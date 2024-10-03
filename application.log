@@ -241,3 +241,36 @@
 2024-10-03T10:16:42.902+02:00  INFO 28292 --- [statsApp] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
 2024-10-03T10:16:42.908+02:00  INFO 28292 --- [statsApp] [restartedMain] c.landspa.statsapp.StatsAppApplication   : Started StatsAppApplication in 2.534 seconds (process running for 4191.264)
 2024-10-03T10:16:42.911+02:00  INFO 28292 --- [statsApp] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-10-03T10:18:07.492+02:00  INFO 28292 --- [statsApp] [File Watcher] rtingClassPathChangeChangedEventListener : Restarting due to 1 class path change (0 additions, 0 deletions, 1 modification)
+2024-10-03T10:18:07.513+02:00  INFO 28292 --- [statsApp] [Thread-7] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-03T10:18:07.514+02:00  INFO 28292 --- [statsApp] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
+2024-10-03T10:18:07.517+02:00  INFO 28292 --- [statsApp] [Thread-7] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2024-10-03T10:18:07.612+02:00  INFO 28292 --- [statsApp] [restartedMain] c.landspa.statsapp.StatsAppApplication   : Starting StatsAppApplication using Java 22.0.1 with PID 28292 (C:\Users\landy\IdeaProjects\statsApp\target\classes started by landy in C:\Users\landy\IdeaProjects\statsApp)
+2024-10-03T10:18:07.612+02:00  INFO 28292 --- [statsApp] [restartedMain] c.landspa.statsapp.StatsAppApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-10-03T10:18:07.935+02:00  INFO 28292 --- [statsApp] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-10-03T10:18:07.993+02:00  INFO 28292 --- [statsApp] [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 14 JPA repository interfaces.
+2024-10-03T10:18:08.126+02:00  INFO 28292 --- [statsApp] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-10-03T10:18:08.127+02:00  INFO 28292 --- [statsApp] [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-10-03T10:18:08.127+02:00  INFO 28292 --- [statsApp] [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.26]
+2024-10-03T10:18:08.151+02:00  INFO 28292 --- [statsApp] [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-10-03T10:18:08.151+02:00  INFO 28292 --- [statsApp] [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 536 ms
+2024-10-03T10:18:08.201+02:00  INFO 28292 --- [statsApp] [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-10-03T10:18:08.203+02:00  INFO 28292 --- [statsApp] [restartedMain] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-10-03T10:18:08.211+02:00  INFO 28292 --- [statsApp] [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-10-03T10:18:08.213+02:00  INFO 28292 --- [statsApp] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Starting...
+2024-10-03T10:18:08.216+02:00  INFO 28292 --- [statsApp] [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-3 - Added connection org.mariadb.jdbc.Connection@428db426
+2024-10-03T10:18:08.216+02:00  INFO 28292 --- [statsApp] [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Start completed.
+2024-10-03T10:18:08.217+02:00  WARN 28292 --- [statsApp] [restartedMain] org.hibernate.orm.deprecation            : HHH90000025: MariaDBDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-10-03T10:18:08.220+02:00  WARN 28292 --- [statsApp] [restartedMain] o.h.boot.model.internal.EntityBinder     : HHH000457: Joined inheritance hierarchy [cz.landspa.statsapp.model.Event] defined explicit @DiscriminatorColumn.  Legacy Hibernate behavior was to ignore the @DiscriminatorColumn.  However, as part of issue HHH-6911 we now apply the explicit @DiscriminatorColumn.  If you would prefer the legacy behavior, enable the `hibernate.discriminator.ignore_explicit_for_joined` setting (hibernate.discriminator.ignore_explicit_for_joined=true)
+2024-10-03T10:18:08.517+02:00  INFO 28292 --- [statsApp] [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-10-03T10:18:08.568+02:00  INFO 28292 --- [statsApp] [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-10-03T10:18:09.127+02:00  WARN 28292 --- [statsApp] [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-10-03T10:18:09.144+02:00  WARN 28292 --- [statsApp] [restartedMain] r$InitializeUserDetailsManagerConfigurer : Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-10-03T10:18:09.164+02:00  INFO 28292 --- [statsApp] [restartedMain] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2024-10-03T10:18:09.490+02:00  INFO 28292 --- [statsApp] [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2024-10-03T10:18:09.508+02:00  INFO 28292 --- [statsApp] [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-10-03T10:18:09.513+02:00  INFO 28292 --- [statsApp] [restartedMain] c.landspa.statsapp.StatsAppApplication   : Started StatsAppApplication in 1.932 seconds (process running for 4277.868)
+2024-10-03T10:18:09.514+02:00  INFO 28292 --- [statsApp] [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2024-10-03T10:19:40.006+02:00  INFO 28292 --- [statsApp] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-10-03T10:19:40.007+02:00  INFO 28292 --- [statsApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown initiated...
+2024-10-03T10:19:40.010+02:00  INFO 28292 --- [statsApp] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-3 - Shutdown completed.
