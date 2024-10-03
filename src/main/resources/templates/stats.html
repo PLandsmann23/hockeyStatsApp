@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Statistiky</title>
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/stats.css}">
+</head>
+<body>
+<div class="menu" th:replace="~{fragments/menu.html:: menu('stats')}"></div>
+<div class="main">
+    <div class="header" th:replace="~{fragments/menu.html:: header(null,null)}">
+
+    </div>
+    <div id="content">
+        <div class="stats-header">
+            <div class="box">
+                <h1>Statistiky</h1>
+                <div class="team-select">
+                    <div>
+                    <label for="team">Tým: </label>
+                    <select name="" id="team" onchange="getTeamStats()">
+                        <option value="" disabled selected>---</option>
+                    </select>
+                    </div>
+                <div>
+                    <label for="range">Období: </label>
+                    <select name="" id="range" onchange="getTeamStats()">
+                        <option value="this-season" selected>Tato sezóna</option>
+                        <option value="last5">Posledních 5 zápasů</option>
+                        <option value="own" disabled>Vlastní rozsah</option>
+                    </select>
+                </div>
+                    <label for="date-from">Datum od:</label>
+                    <input type="date" name="" id="date-from">
+                    <label for="date-to">Datum do:</label>
+                    <input type="date" name="" id="date-to">
+                    <button>Zobrazit</button>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="team-stats">
+            <div class="box">
+                <h3>Týmové statistiky</h3>
+                <div class="container">
+                    <div id="shots-eff">
+                        <h5>Úspěšnost střelby</h5>
+                        <div class="stats-circle">
+                            <span class="stats-value">--</span>
+                        </div>
+                    </div>
+                    <div id="saves-eff">
+                        <h5>Úspěšnost zásahů</h5>
+                        <div class="stats-circle">
+                            <span class="stats-value">--</span>
+                        </div>
+                    </div>
+                    <div  id="pp-eff">
+                        <h5>Úspěšnost přesilovek</h5>
+                        <div class="stats-circle">
+                            <span class="stats-value">--</span>
+                        </div>
+                    </div>
+                    <div  id="sh-eff">
+                        <h5>Úspěšnost oslabení</h5>
+                        <div class="stats-circle">
+                            <span class="stats-value">--</span>
+                        </div>
+                    </div>
+                    <div id="goals-bar">
+                        <div class="goals-bar-header">
+                            <span>Vstřelené góly/zápas</span>
+                            <span>Obdržené góly/zápas</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="scored-bar"></div>
+                            <div class="conceded-bar"></div>
+                        </div>
+                        <div class="goals-bar-values">
+                            <span id="avg-goals-scored">--</span>
+                            <span id="avg-goals-conceded">--</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="player-stats">
+            <div class="box">
+                <h3>Hráčské statistiky</h3>
+                <div class="stats-table">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Číslo</th>
+                        <th>Jméno</th>
+                        <th>Z</th>
+                        <th>OG</th>
+                        <th>Zás.</th>
+                        <th>Góly/zápas</th>
+                        <th>%</th>
+                    </tr>
+                    </thead>
+                    <tbody id="goalie-stats-body">
+
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Číslo</th>
+                        <th>Jméno</th>
+                        <th>Z</th>
+                        <th>G</th>
+                        <th>A</th>
+                        <th>B</th>
+                        <th>+/-</th>
+                        <th>TM</th>
+                    </tr>
+                    </thead>
+                    <tbody  id="player-stats-body">
+
+                    </tbody>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/message.html:: message-box}"></div>
+</body>
+<script src="/js/const.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/modules/modal.js"></script>
+<script src="/js/modules/message.js"></script>
+<script src="/js/stats/script.js"></script>
+</html>

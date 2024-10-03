@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Moje týmy</title>
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/myteams.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+</head>
+<body>
+<div class="menu" th:replace="~{fragments/menu.html:: menu('teams')}"></div>
+
+<div class="main">
+    <div class="header" th:replace="~{fragments/menu.html:: header(null,null)}">
+
+    </div>
+        <div id="content">
+            <div class="box my-teams">
+                <div class="my-teams-header"><h2>Moje týmy</h2><button onclick="openModal('create-team')">Přidat tým</button></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Název týmu</th>
+                            <th>Počet hráčů</th>
+                            <th>Počet zápasů</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+<div th:replace="~{fragments/message.html:: message-box}"></div>
+<div th:replace="~{fragments/modals.html:: create-team}"></div>
+<div th:replace="~{fragments/modals.html:: edit-team}"></div>
+<div th:replace="~{fragments/dialogs.html:: delete-team}"></div>
+</body>
+<script src="/js/const.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/modules/modal.js"></script>
+<script src="/js/modules/message.js"></script>
+<script src="/js/teams/script.js"></script>
+<script src="/js/teams.js"></script>
+</html>

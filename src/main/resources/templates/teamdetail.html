@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title id="team-name-title">Tým 1</title>
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/teamdetail.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+</head>
+<body>
+<div class="menu" th:replace="~{fragments/menu.html:: menu('teams')}"></div>
+
+<div class="main">
+    <div class="header" th:replace="~{fragments/menu.html:: header(null,null)}">
+
+    </div>
+        <div id="content">
+            <div class="box team-header">
+                <h2 id="team-name"></h2>
+                <a href="/teams">Zpět na týmy</a>
+            </div>
+            <div class="container">
+                <button class="tab active" onclick="switchTab('games')">Zápasy</button>
+                <button class="tab" onclick="switchTab('players')">Hráči</button>
+                <div class="box tab-content active" id="games">
+                <div class="games-header"><h2>Zápasy</h2><button onclick="openModal('create-game')">Nový zápas</button></div>
+                    <div class="games-filter" style="visibility: hidden">
+                        <label for="range">Období: </label><select id="range"></select>
+                        <label for="date-from">Datum od: </label><input type="date" id="date-from">
+                        <label for="date-to">Datum do: </label><input type="date" id="date-to">
+                        <button>Filtrovat</button>
+                    </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Soupeř</th>
+                            <th>Datum</th>
+                            <th>Čas</th>
+                            <th>Stadion</th>
+                            <th>Skóre</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                      <!--  <tr data-id="1">
+                            <td>Soupeř 1</td>
+                            <td>XX.XX.XXXX</td>
+                            <td>XX:XX</td>
+                            <td>Stadion 1</td>
+                            <td>-:-</td>
+                            <td>
+                                <img src="/svg/pencil.svg" onclick="openGameEdit(this)">
+                                <img src="/svg/bin.svg" onclick="showDialog('delete-game')">
+                            </td>
+                            <td><a href="/games/1">Přejít na zápas</a></td>
+                        </tr>
+-->
+                    </tbody>
+                </table>
+            </div>
+                <div class="box tab-content" id="players">
+                    <div class="players-header"><h2>Hráči</h2><button onclick="openModal('create-player')">Přidat hráče</button></div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Číslo</th>
+                                    <th>Jméno</th>
+                                    <th>Pozice</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>00</td>
+                                    <td>Jméno Příjmení</td>
+                                    <td>XX</td>
+                                    <td>
+                                        <img src="/svg/pencil.svg" onclick="openModal('edit-player')">
+                                        <img src="/svg/bin.svg" onclick="showDialog('delete-player')">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>00</td>
+                                    <td>Jméno Příjmení</td>
+                                    <td>XX</td>
+                                    <td>
+                                        <img src="/svg/pencil.svg">
+                                        <img src="/svg/bin.svg">
+                                    </td>
+                                </tr><tr>
+                                    <td>00</td>
+                                    <td>Jméno Příjmení</td>
+                                    <td>XX</td>
+                                    <td>
+                                        <img src="/svg/pencil.svg">
+                                        <img src="/svg/bin.svg">
+                                    </td>
+                                </tr><tr>
+                                    <td>00</td>
+                                    <td>Jméno Příjmení</td>
+                                    <td>XX</td>
+                                    <td>
+                                        <img src="/svg/pencil.svg">
+                                        <img src="/svg/bin.svg">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div th:replace="~{fragments/message.html:: message-box}"></div>
+    <div th:replace="~{fragments/dialogs.html:: delete-player}"></div>
+    <div th:replace="~{fragments/dialogs.html:: delete-game}"></div>
+    <div th:replace="~{fragments/modals.html:: create-game}"></div>
+    <div th:replace="~{fragments/modals.html:: create-player}"></div>
+    <div th:replace="~{fragments/modals.html:: edit-game}"></div>
+    <div th:replace="~{fragments/modals.html:: edit-player}"></div>
+
+</body>
+<script src="/js/const.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/modules/modal.js"></script>
+<script src="/js/modules/message.js"></script>
+<script src="/js/teams/tabs.js"></script>
+<script src="/js/teams/teamdetail.js"></script>
+<script src="/js/games.js"></script>
+<script src="/js/players.js"></script>
+</html>

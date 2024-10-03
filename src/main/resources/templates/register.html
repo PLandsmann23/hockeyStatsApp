@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrace</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <script>
+
+    </script>
+</head>
+<body>
+    <h1>Registrace</h1>
+    <div class="form">
+    <div class="container">
+        <label for="username">Uživatelské jméno:</label>
+        <input type="text" name="username" id="username">
+        <span class="error-message" id="username-error"></span>
+        <label for="username">Email:</label>
+        <input type="email" name="email" id="email">
+        <span class="error-message" id="email-error"></span>
+        <label for="password">Heslo:</label>
+        <input type="password" name="password" id="password">
+        <span class="error-message" id="password-error"></span>
+        <label for="password-repeat">Heslo znovu:</label>
+        <input type="password" name="password-repeat" id="password-repeat">
+        <span class="error-message" id="password-repeat-error"></span>
+        <span>Už máte účet? <a href="/login">Přihlaste se</a></span>
+        <button id="register" onclick="handleRegister()" disabled>Registrovat</button>
+
+    </div>
+    </div>
+</body>
+<div th:replace="~{fragments/message.html:: message-box}"></div>
+
+<script src="/js/modules/message.js"></script>
+<script src="/js/register.js"></script>
+</html>

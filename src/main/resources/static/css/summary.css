@@ -1,0 +1,211 @@
+body{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.sum, .game-events{
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.game-events{
+    grid-column: 2;
+    grid-row: 1/3;
+}
+
+.player-stats{
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.game-events table table tr:nth-child(n){
+    background: none;
+}
+
+.sum table, .player-stats table tbody tr td:not(:nth-child(2)){
+    text-align: center;
+}
+
+.sum table, .player-stats table{
+    line-height: 2.3rem;
+}
+
+.sum-col{
+    background-color: var(--violet);
+    color: var(--white);
+    border-top: 1px solid var(--white);
+    border-bottom: 1px solid var(--white);
+}
+
+.header, .score{
+    text-align: center;
+}
+
+.header{
+    display: block;
+    font-size: 1.3rem;
+    border: none;
+}
+
+.score{
+    margin-top: 1rem;
+    font-size: 3.2rem;
+    line-height: 2.3rem;
+}
+
+.period-score{
+    font-size:  1.2rem;
+}
+
+.game-events>table>tbody>tr>td:first-child{
+    width: 15%;
+    font-size: 1.4rem;
+}
+
+.game-events table tr td:last-child {
+    width: 70%;
+}
+
+.game-events td{
+    text-align: center;
+}
+
+.game-events table tr.goal tbody tr td:first-child {
+    width: 80%;
+}
+
+.game-events table tr.penalty table tr td {
+    width: 33%;
+}
+
+.game-events>table>tbody>tr {
+    height: 3rem;
+}
+
+.game-events>table>tbody>tr>td:nth-child(2){
+    font-size: 1rem;
+}
+
+.goal table tr td:first-child {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.game-events>.box>table>tbody>tr>td:first-child{
+    width: 15%;
+    font-size: 1.4rem;
+}
+
+.game-events table tr td:last-child {
+    width: 70%;
+}
+
+.game-events table tr.goal td:nth-child(3){
+    font-size: 1.15rem;
+    width: 60%;
+}
+.game-events table tr.goal td:last-child{
+    width: 15%;
+}
+
+.game-events table tr.goal tbody tr td:nth-child(-n+3){
+    width: 26%;
+}
+
+.game-events table tr.penalty table tr td{
+    width: 33%;
+}
+
+.game-events>div>table>tbody>tr:hover{
+    background-color: var(--lgrey);
+    cursor: pointer;
+}
+
+.scored  table tr td:first-child {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.game-events>table>tbody>tr>td:first-child{
+    font-size: 1.5rem;
+}
+
+td.bg-none{
+    background-color: var(--bg);
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    body div{
+        width: 100%;
+    }
+
+    .sum{
+        order: 1;
+    }
+
+    .game-events{
+        order: 2;
+    }
+
+    .player-stats{
+        order: 3;
+    }
+
+}
+
+@media only screen and (max-width: 540px) {
+
+
+
+
+
+    .game-events>table>tbody>tr {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .game-events>table>tbody>tr {
+        height: 7rem;
+    }
+
+    .game-events>table>tbody>tr>td:first-child, .game-events>table>tbody>tr>td:nth-child(2) {
+        width: 49%;
+        font-size: 1rem;
+    }
+
+    .game-events>table>tbody>tr>td:first-child{
+        font-size: 1.5rem;
+
+    }
+
+    .game-events table tr.goal td:last-child {
+        width: 35%;
+    }
+
+    .game-events>table>tbody>tr.penalty>td:nth-child(3) {
+        width: 99%;
+    }
+    .game-events table tr.penalty table tr
+    {
+        max-height: 2rem;
+    }
+    .game-events table tr.penalty table tr td {
+
+        max-width: 3.5rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}

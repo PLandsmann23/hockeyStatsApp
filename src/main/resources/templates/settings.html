@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nastavení</title>
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/settings.css}">
+</head>
+<body>
+<div class="menu" th:replace="~{fragments/menu.html:: menu('settings')}"></div>
+<div class="main">
+    <div class="header" th:replace="~{fragments/menu.html:: header(null,null)}">
+
+    </div>
+    <div id="content">
+        <div class="box change-password">
+            <h2>Změna hesla</h2>
+            <form onsubmit="changePassword(this)">
+                <div>
+                    <div><label for="old-password">Původní heslo:</label></div>
+                    <div><input type="password" name="old-password" id="old-password"><span class="error-message" id="e-old-password"></span></div>
+                </div>
+                <div>
+                    <div><label for="new-password">Nové heslo:</label></div>
+                    <div><input type="password" name="new-password" id="new-password" onfocusout="validate()" onkeyup="validate()"><span class="error-message" id="e-new-password"></span></div>
+                </div>
+                <div>
+                    <div><label for="new-password-repeat">Nové heslo znovu:</label></div>
+                    <div><input type="password" name="" id="new-password-repeat" onfocusout="validate()" onkeyup="validate()"><span class="error-message" id="e-new-password-repeat"></span></div>
+                </div>
+                <div>
+                        <button type="submit" id="change-pass-button" disabled>Změnit heslo</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/message.html:: message-box}"></div>
+</body>
+<script src="/js/const.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/modules/modal.js"></script>
+<script src="/js/modules/message.js"></script>
+<script src="/js/settings/script.js"></script>
+</html>

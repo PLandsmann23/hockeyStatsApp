@@ -1,0 +1,30 @@
+<div class="menu" th:fragment="menu(page)">
+    <button id="close-menu" onclick="closeMenu()"><svg clip-rule="evenodd" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12 10.93 5.719-5.72c.146-.146.339-.219.531-.219.404 0 .75.324.75.749 0 .193-.073.385-.219.532l-5.72 5.719 5.719 5.719c.147.147.22.339.22.531 0 .427-.349.75-.75.75-.192 0-.385-.073-.531-.219l-5.719-5.719-5.719 5.719c-.146.146-.339.219-.531.219-.401 0-.75-.323-.75-.75 0-.192.073-.384.22-.531l5.719-5.719-5.72-5.719c-.146-.147-.219-.339-.219-.532 0-.425.346-.749.75-.749.192 0 .385.073.531.219z"/></svg></button>
+    <img id="logo" th:src="@{/img/logo.png}" alt="Logo">
+    <nav>
+
+        <ul>
+            <li th:class="${page=='home'?'active':''}"><a href="/">Úvod</a></li>
+            <li th:class="${page=='teams'?'active':''}"><a href="/teams">Moje týmy</a></li>
+            <li th:class="${page=='stats'?'active':''}"><a href="/stats">Statistiky</a></li>
+            <li th:class="${page=='settings'?'active':''}"><a href="/settings">Nastavení</a></li>
+            <li th:class="${page=='help'?'active':''}"><a href="/help">Podpora</a></li>
+        </ul>
+    </nav>
+    <form action="/logout" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <button class="logout" type="submit">Odhlásit se</button>
+    </form>
+</div>
+
+
+<div class="header" th:fragment="header(teamdetail,id)">
+
+    <div class="user-info"><img th:src="@{/img/profile.png}">
+        <span th:text="${username}" id="username">Uživatel 1</span></div>
+    <a th:if="${teamdetail=='teamdetail'}" class="back-button" th:href="'/teams/'+${id}">Zpět na tým</a>
+    <button id="open-menu" onclick="openMenu()" >
+       <img src="/svg/menu.svg" alt="">
+    </button>
+</div>
+

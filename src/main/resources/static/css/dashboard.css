@@ -1,0 +1,265 @@
+#content {
+    height: 85%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 30px;
+
+}
+
+#next-games{
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+
+#my-teams{
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#summary{
+    grid-column: 2;
+    grid-row: 2;
+}
+
+h2{
+    color: var(--black);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+}
+
+.sum-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 85%;
+    gap: 15px;
+}
+
+.sum-item{
+    background-color: var(--lgrey);
+    border-radius: 2rem;
+    padding: 1rem;
+    text-align: center;
+    color: var(--dgrey);
+}
+
+.sum-item table{
+    width: 100%;
+    font-weight: 700;
+
+}
+
+.sum-item table tbody tr{
+    background-color: var(--lgrey);
+    color: var(--dgrey);
+
+}
+
+.sum-name{
+
+}
+
+.sum-count{
+    font-size: 4rem;
+    font-weight: 600;
+}
+
+.sum-item img {
+    width: 70%;
+}
+
+
+
+#my-teams table tr td{
+    font-size: 1.3rem;
+    line-height: 3.2rem;
+}
+
+#my-teams table tr td:nth-child(1),#my-teams table tr th:nth-child(1){
+    width: 50%;
+    padding-left: 1rem;
+}
+
+#my-teams table tr td:nth-child(2),#my-teams table tr td:nth-child(3){
+    text-align: center;
+}
+
+#my-teams table tr th:nth-child(1){
+    text-align: left;
+    padding-left: 1rem;
+
+}
+
+
+tbody{overflow-y: auto}
+
+#my-teams tbody{
+    display: block;
+    max-height: 250px;
+}
+
+#my-teams thead, #my-teams tbody tr {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+#my-teams img{
+    height: 1.5rem;
+    fill: var(--dgrey);
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    cursor: pointer;
+}
+
+#my-teams tr img:nth-child(1):hover{
+    filter: var(--filtered-violet);
+}
+
+#my-teams tr img:nth-child(2):hover{
+    filter: var(--filtered-red);
+}
+
+#next-games tr {
+    height: 2rem;
+}
+
+#next-games>table>tbody>tr>td{
+    text-align: center;
+}
+
+#next-games>table>tbody>tr>td:nth-child(1),#next-games>table>tbody>tr>td:nth-child(3){
+    width: 30%;
+}
+
+#next-games>table>tbody>tr>td:nth-child(1),#next-games>table>tbody>tr>td:nth-child(2),#next-games>table>tbody>tr>td:nth-child(3){
+    font-size: 1.3rem;
+}
+
+#next-games>table>tbody>tr>td:nth-child(2){
+    width: 5%;
+}
+
+#next-games>table>tbody>tr>td:nth-child(4){
+    width: 35%;
+}
+
+#next-games img{
+    height: 1rem;
+}
+
+.game-meta{
+    text-align: center;
+}
+
+
+
+
+.game-meta tr:nth-child(1) td{
+    width: 50%;
+}
+
+.game-meta tr:nth-child(1){
+    background-color: inherit;
+}
+
+.game-meta tr:nth-child(2){
+    background-color: inherit;
+}
+
+
+@media only screen and (max-width: 1440px) {
+    #my-teams table tr td:nth-child(1){
+        font-size: 1.2rem;
+
+        line-height: normal;
+    }
+
+}
+@media only screen and (max-width: 1280px) {
+
+    #next-games > table > tbody > tr > td:nth-child(1), #next-games > table > tbody > tr > td:nth-child(2), #next-games > table > tbody > tr > td:nth-child(3) {
+        font-size: 1.1rem;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    #content {
+        height: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        gap: 30px;
+    }
+
+    #next-games{
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    #my-teams{
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    #summary{
+        grid-column: 1;
+        grid-row: 3;
+    }
+
+    #next-games tr {
+        height: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #next-games>table>tbody>tr>td:nth-child(1),#next-games>table>tbody>tr>td:nth-child(3){
+        width: 42%;
+    }
+
+    #next-games>table>tbody>tr>td:nth-child(1),#next-games>table>tbody>tr>td:nth-child(2),#next-games>table>tbody>tr>td:nth-child(3){
+        font-size: 1rem;
+    }
+
+    #next-games>table>tbody>tr>td:nth-child(2){
+        width: 5%;
+    }
+
+    #next-games>table>tbody>tr>td:nth-child(4) {
+        width: 95%;
+    }
+
+    .game-meta tr:nth-child(1) td {
+        width: 49%;
+    }
+
+    .game-meta tr:nth-child(2) {
+        width: 95%;
+
+    }
+
+    .sum-container {
+        display: grid;
+        grid-template-columns: 30% 30% 30%;
+        height: 85%;
+        gap: 15px;
+    }
+
+    .sum-count {
+        font-size: 2.5rem;
+    }
+
+    #my-teams tbody {
+        display: block;
+        max-height: unset;
+    }
+
+    #my-teams table tr td {
+        font-size: 1rem;
+         line-height: normal;
+    }
+}

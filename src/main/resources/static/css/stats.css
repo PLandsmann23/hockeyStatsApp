@@ -1,0 +1,220 @@
+#content{
+    display: grid;
+    height: 85%;
+    grid-template-columns: 49% 49%;
+    grid-template-rows: auto 1fr;
+    gap: 20px;
+}
+
+h1{
+    margin-top: 0;
+    margin-bottom: 1rem;
+}
+
+h3{
+    margin-top: 0;
+}
+
+h5{
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    width: 100%;
+    text-align: center;
+}
+
+.stats-header{
+    grid-column: 1 /3;
+}
+
+.team-stats .box, .player-stats .box{
+    height: 90%;
+}
+
+.team-stats .container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+}
+
+.team-select{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+
+
+
+.stats-circle{
+    position: relative;
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+    background: conic-gradient(var(--violet) 0deg, var(--lgrey) 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.stats-circle::before{
+    content: "";
+    position: absolute;
+    height: 6rem;
+    width: 6rem;
+    border-radius: 50%;
+    background-color: var(--white);
+}
+
+.stats-value{
+    position: relative;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--violet);
+}
+
+#goals-bar{
+    padding: 2rem 2rem 0 2rem;
+    grid-column: 1 /3;
+    width: 100%;
+}
+
+.progress-bar{
+    display: flex;
+    width: 100%;
+    height: 20px;
+    background-color: var(--lgrey);
+}
+
+.scored-bar{
+    background-color: var(--violet);
+    width: 100%;
+}
+
+.conceded-bar{
+    background-color: var(--cgrey);
+    width: 100%;
+}
+
+.goals-bar-header, .goals-bar-values{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.goals-bar-header{
+    font-size: 0.83rem;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.goals-bar-values{
+    color: var(--violet);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+label{
+    line-height: 2.7rem;
+    margin-right: 1rem;
+}
+
+input, select{
+    height: 85%;
+    line-height: 1.7rem;
+    font-size: 1rem;
+    width: 12rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--dgrey);
+}
+
+.team-select button{
+    padding:0.5rem 2rem ;
+    font-size: 1.1rem;
+    border-radius: 1rem;
+}
+
+.team-select label[for=date-from],
+.team-select label[for=date-to],
+.team-select #date-from,
+.team-select #date-to,
+.team-select button{
+    display: none;
+}
+
+.stats-table{
+    display: none;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.stats-table table tbody tr td:not(:nth-child(2)){
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    #content{
+        grid-template-rows: auto 1fr 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    .stats-header{
+        grid-column: 1;
+    }
+
+    .stats-header .team-select{
+        flex-wrap: wrap;
+    }
+
+    .stats-header .team-select input, .stats-header .team-select select{
+        width: 9rem;
+    }
+
+    .stats-table{
+        max-height: unset;
+        padding-bottom: 2rem;
+    }
+
+
+
+}
+
+@media only screen and (max-width: 480px) {
+
+
+
+    .team-stats .container {
+        grid-template-columns: 1fr;
+    }
+
+    .team-stats .container div{
+        grid-column: 1;
+    }
+
+    #goals-bar {
+        padding:  2rem 0 ;
+        grid-column: 1 ;
+         width: 100%;
+    }
+
+    #goals-bar .goals-bar-header{
+        gap: 20px;
+    }
+
+    #goals-bar .goals-bar-header span:nth-child(2){
+        text-align: right;
+    }
+
+    .stats-table{
+        max-width: 18.5rem;
+        overflow-x: auto;
+        max-height: unset;
+    }
+
+    .stats-table table {
+        min-width: 22rem;
+    }
+
+
+
+}
+

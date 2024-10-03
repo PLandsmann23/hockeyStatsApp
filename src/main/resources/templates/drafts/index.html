@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Úvodní stránka</title>
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+</head>
+<body>
+    <aside>
+        <img id="logo" th:src="@{/img/logo.png}" alt="Logo">
+        <nav>
+
+            <ul>
+                <li class="active"><a href="/static">Úvod</a></li>
+                <li><a href="/teams">Moje týmy</a></li>
+                <li><a href="/stats">Statistiky</a></li>
+                <li><a href="/settings">Nastavení</a></li>
+                <li><a href="/help">Podpora</a></li>
+            </ul>
+        </nav>
+        <a class="logout">Odhlásit se</a>
+    </aside>
+    <main>
+        <header>
+            <div class="user-info"><img th:src="@{/img/profile.png}">
+                <span id="username">Uživatel 1</span></div>
+        </header>
+        <div id="content">
+            <div class="box" id="next-games">
+                <h2>Příští zápasy</h2>
+                <table>
+                    <tr>
+                        <td>Tým</td>
+                        <td>X</td>
+                        <td>Soupeř</td>
+                        <td>
+                            <table class="game-meta">
+                                <tr>
+                                    <td><img src="/svg/calendar.svg"> XX.XX.XXXX</td>
+                                    <td><img src="/svg/clock.svg"> XX:XX</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><img src="/svg/place.svg">&nbsp; Místo XXX</td>
+                                </tr>
+                            </table></td>
+                    </tr>
+                    <tr>
+                        <td>Tým</td>
+                        <td>X</td>
+                        <td>Soupeř</td>
+                        <td>
+                            <table class="game-meta">
+                                <tr>
+                                    <td><img src="/svg/calendar.svg">&nbsp; XX.XX.XXXX</td>
+                                    <td><img src="/svg/clock.svg">&nbsp; XX:XX</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><img src="/svg/place.svg">&nbsp; Místo XXX</td>
+                                </tr>
+                            </table></td>
+                    </tr>
+                    <tr>
+                        <td>Tým</td>
+                        <td>X</td>
+                        <td>Soupeř</td>
+                        <td>
+                            <table class="game-meta">
+                                <tr>
+                                    <td><img src="/svg/calendar.svg">&nbsp; XX.XX.XXXX</td>
+                                    <td><img src="/svg/clock.svg">&nbsp; XX:XX</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><img src="/svg/place.svg">&nbsp; Místo XXX</td>
+                                </tr>
+                            </table></td>
+                    </tr>
+                    <tr>
+                        <td>Tým</td>
+                        <td>X</td>
+                        <td>Soupeř</td>
+                        <td>
+                            <table class="game-meta">
+                                <tr>
+                                    <td><img src="/svg/calendar.svg">&nbsp; XX.XX.XXXX</td>
+                                    <td><img src="/svg/clock.svg">&nbsp; XX:XX</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><img src="/svg/place.svg">&nbsp; Místo XXX</td>
+                                </tr>
+                            </table></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="box" id="my-teams">
+                <h2>Moje týmy</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Název týmu</th>
+                        <th>Počet hráčů</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Tým</td>
+                            <td>00</td>
+                            <td><img src="/svg/pencil.svg">
+                                <img src="/svg/bin.svg" onclick="showDialog('deleteTeam')">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tým</td>
+                            <td>00</td>
+                            <td><img src="/svg/pencil.svg">
+                                <img src="/svg/bin.svg">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tým</td>
+                            <td>00</td>
+                            <td><img src="/svg/pencil.svg">
+                                <img src="/svg/bin.svg">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tým</td>
+                            <td>00</td>
+                            <td><img src="/svg/pencil.svg">
+                                <img src="/svg/bin.svg">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="box" id="summary"><h2>Přehled</h2>
+                <div class="sum-container">
+                    <div class="sum-item">
+                        <table>
+                            <tr>
+                                <td><img src="/svg/team.svg"></td>
+                            </tr>
+                            <tr>
+                                <td class="sum-name">Počet týmů</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-count" id="teams-count">00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="sum-item">
+                        <table>
+                            <tr>
+                                <td><img src="/svg/person.svg"></td>
+                            </tr>
+                            <tr>
+                                <td class="sum-name">Počet hráčů</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-count" id="players-count">00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="sum-item">
+                        <table>
+                            <tr>
+                                <td><img src="/svg/match.svg"></td>
+                            </tr>
+                            <tr>
+                                <td class="sum-name">Počet zápasů</td>
+                            </tr>
+                            <tr>
+                                <td class="sum-count" id="games-count">00</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="message-box">
+        <img src="/svg/info.svg"><h3>Toto je testovací zpráva</h3>
+    </div>
+    <div class="dialog-box" id="deleteTeam">
+        <div class="dialog-box-content">
+            <h4>Opravdu chcete smazat tým?</h4>
+            <div class="dialog-box-buttons"><button class="agree">Ano</button><button onclick="closeDialog(null, 'deleteTeam')" class="cancel">Ne</button></div>
+        </div>
+    </div>
+</body>
+<script src="/js/modules/modal.js"></script>
+<script src="/js/modules/message.js"></script>
+<script src="/js/const.js"></script>
+<script src="/js/script.js"></script>
+
+</html>

@@ -1,0 +1,269 @@
+.modal, .dialog-box{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    z-index: 2;
+}
+
+.modal-content, .dialog-box-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    width: 50%;
+    min-height: 55%;
+    overflow-y: auto;
+    border-radius: 2rem;
+}
+
+.dialog-box-content{
+    width: 20%;
+    min-height: 15%;
+}
+
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-header h4{
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.modal-header img{
+    height: 3rem;
+    display: block; /* Remove extra space below image */
+    pointer-events: auto;
+}
+
+.modal-header button{
+    background: none; /* Remove default button styles */
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer; /* Show pointer cursor on hover */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-header button:focus {
+    outline: none; /* Remove default focus outline */
+}
+
+.modal-buttons, .dialog-box-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-buttons button, .dialog-box-buttons button{
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    font-size: 1.25rem;
+}
+
+.modal-text{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: auto;
+}
+
+.time-situation, .time-reason{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.situation{
+    margin: 0 auto;
+}
+
+
+
+.modal-text input[type=text], .modal-text input[type=date], .modal-text input[type=time]{
+    width: calc(1.5rem * 2);
+    padding: 0.5rem;
+    height: 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--dgrey);
+    margin: 0 1rem;
+
+}
+
+.modal-text input[type=number]{
+    width: calc(1.5rem * 1);
+    padding: 0.5rem;
+    height: 1.5rem;
+    font-size: 1.25rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--dgrey);
+    margin: 0 1rem;
+}
+
+.modal-text input[type=search]{
+    width: calc(1.5rem * 5);
+    padding: 0.5rem;
+    height: 2.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--dgrey);
+    margin: 0 1rem;
+}
+
+#create-team .modal-text input, #edit-team .modal-text input{
+    width: calc(1.5rem * 10);
+}
+
+#create-game .modal-text input, #edit-game .modal-text input{
+    width: calc(1.5rem * 8);
+}
+
+#create-game .modal-text input[type=number], #edit-game .modal-text input[type=number]{
+    width: calc(1.5rem * 3);
+}
+
+.modal-text select{
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    margin: 0 1rem;
+
+}
+
+.roster button{
+    font-size: 1.1rem;
+    margin: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+.time-reason div:nth-child(2){
+    margin: 0 auto;
+}
+
+.cancel{
+    background-color: var(--mgrey);
+}
+
+.modal, .dialog-box{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgb(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+}
+
+.error-input{
+    border-color: var(--red) !important;
+    background-color: var(--lred);
+}
+
+.modal input:focus{
+    border: 2px solid var(--violet);
+}
+
+#scored-goal .modal-content{
+    height: 65%;
+}
+
+#conceded-goal .modal-content{
+    height: 65%;
+}
+
+#scored-goal .modal-text>div:nth-child(2), #scored-goal .modal-text>div:nth-child(3),
+#scored-goal-edit .modal-text>div:nth-child(2), #scored-goal-edit .modal-text>div:nth-child(3),
+#conceded-goal .modal-text>div:nth-child(2), #conceded-goal-edit .modal-text>div:nth-child(2){
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+@media only screen and (max-width: 1024px) {
+
+
+    .dialog-box-content {
+        width: 35%;
+        min-height: 10%;
+    }
+
+    #scored-goal .modal-text>div:nth-child(3) label,
+    #scored-goal-edit .modal-text>div:nth-child(3) label,
+    #conceded-goal .modal-text>div:nth-child(2) label,
+    #conceded-goal-edit .modal-text>div:nth-child(2) label{
+        width: 100%;
+
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+
+    .modal-content,.dialog-box-content {
+        width: 70%;
+    }
+
+}
+
+@media only screen and (max-width: 739px) {
+    #edit-game .modal-content, #create-game .modal-content{
+        min-height: 65%;
+    }
+
+    #edit-game .modal-text div,#create-game .modal-text div {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        #edit-game .modal-text label,#create-game .modal-text label{
+        width: 90%;
+            margin-bottom: 0.5rem;
+    }
+
+        .modal-buttons{
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+}
+
+@media only screen and (max-width: 540px) {
+
+    .time-situation div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #scored-goal .modal-text>div:nth-child(n+2) div:first-child,
+    #scored-goal-edit .modal-text>div:nth-child(n+2) div:first-child{
+       width: 100%;
+    }
+
+    #scored-goal .modal-text>div:nth-child(n+2),
+    #scored-goal-edit .modal-text>div:nth-child(n+2),
+    #conceded-goal .modal-text>div:nth-child(n+1),
+    #conceded-goal-edit .modal-text>div:nth-child(n+1){
+        gap: 10px;
+    }
+
+}

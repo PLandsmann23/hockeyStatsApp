@@ -1,0 +1,221 @@
+#content {
+    height: 85%;
+}
+
+.roster-grid{
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    overflow-y: auto;
+    height: 70%;
+    max-height: 70%;
+}
+
+.roster-grid tbody tr td {
+    font-size: 1.1rem;
+    line-height: 2.5rem;
+}
+
+.roster-grid tbody img {
+    height: 1.2rem;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg) brightness(108%) contrast(101%);
+    padding-top: 0.2rem;
+}
+
+.roster-grid tbody input, .roster-grid tbody select{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.1rem;
+    width: 3rem;
+    border-radius: 0.5rem;
+}
+
+
+.roster-grid tbody tr td button{
+    border: none;
+    border-radius: 0.5rem;
+
+    background-color: var(--violet);
+}
+
+.roster-grid tbody tr td:not(:nth-child(2)){
+    text-align: center;
+}
+
+.roster-grid thead tr th:nth-child(2){
+    text-align: left;
+}
+
+.roster-grid tbody tr td div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.roster-grid tbody tr td button{
+    background-color: var(--violet);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 1rem;
+    padding: 0.2rem 1.5rem ;
+    font-size: 1.1rem;
+}
+
+
+
+.games-header{
+    display: flex;
+    align-items: center;
+}
+
+.buttons {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+}
+
+.buttons button, .games-header a, a.back-button {
+    display: block;
+    background-color: var(--violet);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 1rem;
+    padding: 0.2rem 1.5rem ;
+    border: none;
+    font-size: 1rem;
+}
+
+.games-header a{
+    background-color: var(--green);
+}
+
+.header a {
+    margin-left: 1rem;
+    margin-right: auto;
+    line-height: 2rem;
+    height: 2rem;
+}
+
+button.edit-roster{
+    padding: 0.2rem 1.2rem !important;
+    font-size: 1rem !important;
+    border-radius: 0.8rem !important;
+
+}
+@media only screen and (max-width: 1439px) {
+    #open-menu{
+        margin-right: 0;
+    }
+
+
+}
+
+
+@media only screen and (max-width: 1024px) {
+    .games-header{
+        flex-direction: column;
+    }
+
+    .games-header .buttons{
+        flex-direction: row;
+    }
+    .roster-grid{
+        display: flex;
+        flex-wrap: wrap;
+        width: 93%;
+    }
+
+    #not-in-roster, #roster{
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+
+
+}
+
+
+
+
+@media only screen and (max-width: 540px) {
+    .roster-grid{
+        width: 85%;
+    }
+
+    #open-menu{
+        margin-right: auto;
+    }
+
+    .header{
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+    }
+
+    a.back-button{
+        display: block;
+    }
+
+    .header a {
+
+         margin-right: 0;
+         line-height: normal;
+         height: auto;
+    }
+
+    .games-header .buttons{
+        flex-direction: column;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .roster-grid tbody tr td div {
+        flex-wrap: wrap;
+    }
+
+    button.edit-roster {
+        padding: 0.2rem 0.7rem !important;
+        font-size: 0.8rem !important;
+        border-radius: 0.8rem !important;
+    }
+
+    .roster-grid tbody input, .roster-grid tbody select {
+
+        width: 2rem;
+    }
+
+
+    #roster tbody tr, #roster thead tr {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+
+    }
+
+    #roster tbody tr td:nth-child(1), #roster thead tr th:nth-child(1){
+        width: 15%;
+    }
+
+
+    #roster tbody tr td:nth-child(2){
+        width: 65%;
+
+        padding-left: 0.5rem;
+    }
+    #roster thead tr th:nth-child(2){
+        width: 60%;
+        padding-left: 0.5rem;
+    }
+
+    #roster tbody tr td:nth-child(4), #roster thead tr th:nth-child(4){
+        display: none;
+    }
+    #roster tbody tr td:nth-child(5), #roster thead tr th:nth-child(5){
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+}

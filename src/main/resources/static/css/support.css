@@ -1,0 +1,50 @@
+.send-support-message form>div{
+    display: grid;
+    grid-template-columns: 25% 75%;
+    margin: 1rem 0;
+}
+
+.send-support-message form>div:last-child {
+    display: flex;
+    justify-content: center;
+}
+
+.send-support-message input, .send-support-message textarea{
+    padding: 0.5rem;
+    height: 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--dgrey);
+    margin: 0 1rem;
+    width: 90%;
+}
+
+.send-support-message textarea{
+    height: 8rem;
+    font-family: "Poppins", sans-serif;
+}
+
+
+.send-support-message button{
+    font-size: 1.15rem;
+    padding: 0.5rem 2rem ;
+    border-radius: 0.5rem;
+}
+
+@media only screen and (max-width: 480px) {
+
+    .send-support-message form>div{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin: 1rem 0;
+    }
+
+
+
+    .send-support-message input{
+        width: 85%;
+    }
+
+
+
+}

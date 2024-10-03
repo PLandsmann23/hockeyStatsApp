@@ -1,0 +1,916 @@
+<div class="modal" th:fragment="scored-goal" id="scored-goal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Vstřelený gól</h4>
+            <button onclick="closeModal(null,'scored-goal')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div> <label for="scored-goal-time-real">Čas:</label>
+                    <input type="text" name="" id="scored-goal-time-real" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)" inputmode="numeric" maxlength="4"></div><div class="situation">
+                <label for="scored-goal-situation">Stav na ledě:</label><select id="scored-goal-situation">
+                <option value="5/5" selected>5/5</option>
+                <option value="4/4">4/4</option>
+                <option value="3/3">3/3</option>
+                <option value="5/4">5/4</option>
+                <option value="5/3">5/3</option>
+                <option value="4/3">4/3</option>
+                <option value="4/5">4/5</option>
+                <option value="3/5">3/5</option>
+                <option value="3/4">3/4</option>
+                <option value="TS">TS</option>
+                <option value="SN">SN</option>
+            </select></div></div><div>
+            <div><label for="goal">G:</label>
+            <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="goal">
+            <input type="hidden" name="" id="goal-id"></div>
+            <div><label for="assist1">A1:</label>
+            <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="assist1">
+            <input type="hidden" name="" id="assist1-id"></div>
+            <div><label for="assist2">A2:</label>
+            <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="assist2">
+            <input type="hidden" name="" id="assist2-id"></div></div>
+            <div>
+                <label>Na ledě:</label>
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)" name="" id="scored-goal-onIce1">
+                <input type="hidden" name="plus1" id="scored-goal-onIce1-id">
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  name="" id="scored-goal-onIce2">
+                <input type="hidden" name="plus2" id="scored-goal-onIce2-id">
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  name="" id="scored-goal-onIce3">
+                <input type="hidden" name="plus3" id="scored-goal-onIce3-id">
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  name="" id="scored-goal-onIce4">
+                <input type="hidden" name="plus4" id="scored-goal-onIce4-id">
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  name="" id="scored-goal-onIce5">
+                <input type="hidden" name="plus5" id="scored-goal-onIce5-id">
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  name="" id="scored-goal-onIce6">
+                <input type="hidden" name="plus6" id="scored-goal-onIce6-id">
+            </div>
+            <div id="scored-goal-roster" class="roster">
+                <button data-number="1" data-id="1">00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="newGoalScored()" disabled>Uložit</button><button class="cancel" onclick="closeModal(null,'scored-goal')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="conceded-goal" id="conceded-goal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Obdržený gól</h4>
+            <button onclick="closeModal(null,'conceded-goal')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div> <label for="conceded-goal-time-real">Čas:</label>
+                    <input type="text" name="" id="conceded-goal-time-real" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)"   inputmode="numeric" maxlength="4"></div><div class="situation">
+                <label for="conceded-goal-situation">Stav na ledě:</label><select id="conceded-goal-situation">
+                <option value="5/5" selected>5/5</option>
+                <option value="4/4">4/4</option>
+                <option value="3/3">3/3</option>
+                <option value="5/4">5/4</option>
+                <option value="5/3">5/3</option>
+                <option value="4/3">4/3</option>
+                <option value="4/5">4/5</option>
+                <option value="3/5">3/5</option>
+                <option value="3/4">3/4</option>
+                <option value="TS">TS</option>
+                <option value="SN">SN</option>
+            </select>
+                <label for="empty-net">Do prázdné brány</label><input type="checkbox" name="" id="empty-net">
+            </div></div>
+            <div>
+                <label>Na ledě:</label>
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="conceded-goal-onIce1">
+                <input type="hidden" name="minus1" id="conceded-goal-onIce1-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="conceded-goal-onIce2">
+                <input type="hidden" name="minus2" id="conceded-goal-onIce2-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="conceded-goal-onIce3">
+                <input type="hidden" name="minus3" id="conceded-goal-onIce3-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="conceded-goal-onIce4">
+                <input type="hidden" name="minus4" id="conceded-goal-onIce4-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="conceded-goal-onIce5">
+                <input type="hidden" name="minus5" id="conceded-goal-onIce5-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  id="conceded-goal-onIce6">
+                <input type="hidden" name="minus6" id="conceded-goal-onIce6-id">
+            </div>
+            <div id="conceded-goal-roster" class="roster">
+                <button data-number="1" data-id="1">00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="newGoalConceded()" disabled>Uložit</button><button class="cancel" onclick="closeModal(null,'conceded-goal')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="penalty" id="penalty">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Vyloučení</h4>
+            <button onclick="closeModal(null,'penalty')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div> <label for="penalty-time-real">Čas:</label>
+                    <input type="text" name="" id="penalty-time-real" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)"   inputmode="numeric" maxlength="4"></div><div class="situation">
+                <label>Hráč:</label>
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  name="" id="penalty-player">
+                <input type="hidden" name="penalty-player" id="penalty-player-id"></div></div>
+            <div class="time-reason">
+                <div>
+                    <label for="penalty-length">Délka trestu:</label>
+                    <select id="penalty-length">
+                        <option value="2">2</option>
+                        <option value="4">2+2</option>
+                        <option value="12">2+10</option>
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                        <option value="25">5+OK</option>
+                        <option value="20">OK</option>
+                        <option value="0">TS</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="reason">Důvod: </label>
+                    <input type="search" id="reason" autocomplete="on" list="penalties">
+                </div>
+            </div>
+            <div id="penalty-roster" class="roster">
+                <button data-number="1" data-id="1">00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="newPenalty()" disabled>Uložit</button><button class="cancel" onclick="closeModal(null,'penalty')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="opponent-penalty" id="opponent-penalty">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Vyloučení soupeře</h4>
+            <button onclick="closeModal(null,'opponent-penalty')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div> <label for="conceded-goal-time-real">Čas:</label>
+                    <input type="text" name="" id="opponent-penalty-time-real" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)"   inputmode="numeric" maxlength="4"></div><div class="situation">
+
+                <label for="opponent-penalty-length">Délka trestu:</label>
+                <select id="opponent-penalty-length">
+                    <option value="2">2</option>
+                    <option value="4">2+2</option>
+                    <option value="12">2+10</option>
+                    <option value="10">10</option>
+                    <option value="5">5</option>
+                    <option value="25">5+OK</option>
+                    <option value="20">OK</option>
+                    <option value="0">TS</option>
+                </select></div></div>
+
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="newOpponentPenalty()" disabled>Uložit</button><button class="cancel" onclick="closeModal(null,'opponent-penalty')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="player-stats" id="player-stats">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Statistiky hráčů</h4>
+            <button onclick="closeModal(null,'player-stats')"><img src="/svg/x.svg" ></button>
+        </div>
+        <table>
+            <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th colspan="5">Zásahy</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <th>Číslo</th>
+                <th>Jméno</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>PR</th>
+                <th>Celkem</th>
+                <th>OG</th>
+                <th>%</th>
+            </tr>
+            </thead>
+            <tbody id="goalie-stats-body">
+            <tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>00</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>00</td>
+                <td>0</td>
+                <td>0</td>
+            </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+            <tr>
+                <th>Číslo</th>
+                <th>Jméno</th>
+                <th>G</th>
+                <th>A</th>
+                <th>B</th>
+                <th>+/-</th>
+                <th>TM</th>
+            </tr>
+            </thead>
+            <tbody  id="player-stats-body">
+            <tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr><tr>
+                <td>00</td>
+                <td>Jméno Příjmení</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0</td>
+                <td>+-0</td>
+                <td>00</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal" th:fragment="create-team" id="create-team">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Vytvořit tým</h4>
+            <button onclick="closeModal(null,'create-team')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <label for="team-name">Název týmu: </label>
+            <input type="text"  id="team-name"><span class="error-message" id="e-team-name"></span>
+        </div>
+        <div class="modal-buttons">
+            <button onclick="newTeam()">Uložit</button><button class="cancel" onclick="closeModal(null,'create-team')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="edit-team" id="edit-team">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Upravit tým</h4>
+            <button onclick="closeModal(null,'edit-team')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <input type="hidden" name="" id="team-id">
+            <label for="team-name-edit">Název týmu: </label>
+            <input type="text" id="team-name-edit"><span class="error-message" id="e-team-name-edit"></span>
+        </div>
+        <div class="modal-buttons">
+            <button onclick="editTeam()">Uložit</button><button class="cancel" onclick="closeModal(null,'edit-team')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="create-game" id="create-game">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Nový zápas</h4>
+            <button onclick="closeModal(null,'create-game')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div><label for="game-opponent">Soupeř: </label>
+                <input type="text" id="game-opponent" style="aspect-ratio: 8/1"><span class="error-message" id="e-game-opponent"></span></div>
+            <div><label for="game-date">Datum: </label>
+                <input type="date" id="game-date" style="aspect-ratio: 6/1"><span class="error-message" id="e-game-date"></span></div>
+            <div><label for="game-time">Čas: </label>
+                <input type="time" id="game-time" style="aspect-ratio: 5/1"><span class="error-message" id="e-game-time"></span></div>
+            <div> <label for="game-venue">Stadion: </label>
+                <input type="text" id="game-venue" style="aspect-ratio: 8/1">
+                <span class="error-message" id="e-game-venue"></span></div>
+            <div> <label for="game-period-length">Délka herní části (minuty): </label>
+                <input type="number" value="20" id="game-period-length" >
+                <span class="error-message" id="e-game-period-length"></span></div>
+            <div> <label for="game-periods">Počet herních částí: </label>
+                <input type="number" value="3" id="game-periods">
+                <span class="error-message" id="e-game-periods"></span></div>
+        </div>
+        <div class="modal-buttons">
+            <button onclick="newGame()">Uložit</button><button class="cancel" onclick="closeModal(null,'create-game')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="edit-game" id="edit-game">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Upravit zápas</h4>
+            <button onclick="closeModal(null,'edit-game')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <input type="hidden" name="" id="game-id">
+            <div><label for="game-opponent-edit">Soupeř: </label>
+                <input type="text" id="game-opponent-edit" style="aspect-ratio: 8/1"><span class="error-message" id="e-game-opponent-edit"></span></div>
+            <div><label for="game-date-edit">Datum: </label>
+                <input type="date" id="game-date-edit" style="aspect-ratio: 6/1"><span class="error-message" id="e-game-date-edit"></span></div>
+            <div><label for="game-time-edit">Čas: </label>
+                <input type="time" id="game-time-edit" style="aspect-ratio: 5/1"><span class="error-message" id="e-game-time-edit"></span></div>
+            <div> <label for="game-venue-edit">Stadion: </label>
+                <input type="text" id="game-venue-edit" style="aspect-ratio: 8/1">
+                <span class="error-message" id="e-game-venue-edit"></span></div>
+
+        </div>
+        <div class="modal-buttons">
+            <button onclick="editGame()">Uložit</button><button class="cancel" onclick="closeModal(null,'edit-game')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="create-player" id="create-player">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Vytvořit hráče</h4>
+            <button onclick="closeModal(null,'create-player')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div><label for="player-name">Jméno: </label>
+                <input type="text" id="player-name" style="width: calc(1.5rem * 8);"><span class="error-message" id="e-player-name"></span></div>
+            <div><label for="player-surname">Příjmení: </label>
+                <input type="text" id="player-surname" style="width: calc(1.5rem * 8);"><span class="error-message" id="e-player-surname"></span></div>
+            <div><label for="player-number">Číslo dresu: </label>
+                <input type="number"  inputmode="numeric" id="player-number"><span class="error-message" id="e-player-number"></span>
+                </div><div><label for="player-position">Pozice: </label>
+                <select id="player-position">
+                    <option value="">--</option>
+                    <option value="GK">Brankář</option>
+                    <option value="D">Obránce</option>
+                    <option value="F">Útočník</option>
+                </select>
+                <span class="error-message" id="e-player-position"></span></div>
+
+        </div>
+        <div class="modal-buttons">
+            <button onclick="newPlayer()">Uložit</button><button class="cancel" onclick="closeModal(null,'create-player')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="edit-player" id="edit-player">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Upravit hráče</h4>
+            <button onclick="closeModal(null,'edit-player')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <input type="hidden" name="" id="player-id">
+            <div><label for="player-name-edit">Jméno: </label>
+                <input type="text" id="player-name-edit" style="width: calc(1.5rem * 8);"><span class="error-message" id="e-player-name-edit"></span></div>
+            <div><label for="player-surname-edit">Příjmení: </label>
+                <input type="text" id="player-surname-edit" style="width: calc(1.5rem * 8);"><span class="error-message" id="e-player-surname-edit"></span></div>
+            <div><label for="player-number-edit">Číslo dresu: </label>
+                <input type="number"   inputmode="numeric" id="player-number-edit"><span class="error-message" id="e-player-number-edit"></span>
+            </div><div><label for="player-position-edit">Pozice: </label>
+                <select id="player-position-edit">
+                    <option value="">--</option>
+                    <option value="GK">Brankář</option>
+                    <option value="D">Obránce</option>
+                    <option value="F">Útočník</option>
+                </select>
+                <span class="error-message" id="e-player-position-edit"></span></div>
+
+        </div>
+        <div class="modal-buttons">
+            <button onclick="editPlayer()">Uložit</button><button class="cancel" onclick="closeModal(null,'edit-player')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="number-conflict" id="number-conflict">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Hráč s číslem <span id="conflict-number"></span> už je na soupisce. Změňte, prosím, jedno z čísel</h4>
+            <button onclick="closeModal(null,'number-conflict')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <input type="hidden" name="" id="roster-player-id">
+            <input type="hidden" id="new-player-id">
+            <table>
+                <tr><td>
+                    <label for="game-opponent-edit">Hráč na soupisce: </label></td><td><span id="roster-player-name">Jméno Příjmení 1</span></td><td>
+                    <input type="number"  inputmode="numeric" id="roster-player-number" style="aspect-ratio: 2/1"> <span class="error-message" id="e-roster-player-number"></span></td></tr>
+                <tr><td>
+                    <label for="game-date-edit">Nový hráč: </label></td><td><span id="new-player-name">Jméno Příjmení 2</span><td>
+                    <input type="number"  inputmode="numeric" id="new-player-number" style="aspect-ratio: 2/1"> <span class="error-message" id="e-new-player-number"></span></td></tr></table>
+
+
+        </div>
+        <div class="modal-buttons">
+            <button onclick="editAndNewRoster()">Uložit</button><button class="cancel" onclick="closeModal(null,'number-conflict')">Zrušit</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="scored-goal-edit" id="scored-goal-edit">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Upravit vstřelený gól</h4>
+            <button onclick="closeModal(null,'scored-goal-edit')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div>
+                    <label for="scored-goal-time-real-edit">Čas:</label>
+                    <input type="text" name="" id="scored-goal-time-real-edit" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)" inputmode="numeric" maxlength="4">
+                    <input type="hidden" name="" id="scored-goal-id">
+                </div>
+                <div class="situation">
+                    <label for="scored-goal-situation-edit">Stav na ledě:</label>
+                    <select id="scored-goal-situation-edit">
+                        <option value="5/5" selected>5/5</option>
+                        <option value="4/4">4/4</option>
+                        <option value="3/3">3/3</option>
+                        <option value="5/4">5/4</option>
+                        <option value="5/3">5/3</option>
+                        <option value="4/3">4/3</option>
+                        <option value="4/5">4/5</option>
+                        <option value="3/5">3/5</option>
+                        <option value="3/4">3/4</option>
+                        <option value="TS">TS</option>
+                        <option value="SN">SN</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+               <div> <label for="goal-edit">G:</label>
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="goal-edit">
+                <input type="hidden" name="" id="goal-edit-id"></div>
+
+                <div> <label for="assist1-edit">A1:</label>
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="assist1-edit">
+                <input type="hidden" name="" id="assist1-edit-id"></div>
+
+                <div> <label for="assist2-edit">A2:</label>
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="assist2-edit">
+                <input type="hidden" name="" id="assist2-edit-id"></div>
+            </div>
+            <div>
+                <label>Na ledě:</label>
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)" name="" id="scored-goal-onIce1-edit">
+                <input type="hidden" name="plus1" id="scored-goal-onIce1-edit-id">
+
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)" name="" id="scored-goal-onIce2-edit">
+                <input type="hidden" name="plus2" id="scored-goal-onIce2-edit-id">
+
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)" name="" id="scored-goal-onIce3-edit">
+                <input type="hidden" name="plus3" id="scored-goal-onIce3-edit-id">
+
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)" name="" id="scored-goal-onIce4-edit">
+                <input type="hidden" name="plus4" id="scored-goal-onIce4-edit-id">
+
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)" name="" id="scored-goal-onIce5-edit">
+                <input type="hidden" name="plus5" id="scored-goal-onIce5-edit-id">
+
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)" name="" id="scored-goal-onIce6-edit">
+                <input type="hidden" name="plus6" id="scored-goal-onIce6-edit-id">
+            </div>
+            <div id="scored-goal-roster-edit" class="roster">
+                <button data-number="1" data-id="1">00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="editGoalScored()">Uložit</button>
+            <button class="cancel" onclick="closeModal(null,'scored-goal-edit')">Zrušit</button>
+            <button class="delete" onclick="openDeleteScoredGoalDialog()">Smazat gól</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="conceded-goal-edit" id="conceded-goal-edit">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Uprvait obdržený gól</h4>
+            <button onclick="closeModal(null,'conceded-goal-edit')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div>
+                    <label for="conceded-goal-time-real-edit">Čas:</label>
+                    <input type="text" name="" id="conceded-goal-time-real-edit" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)" inputmode="numeric" maxlength="4">
+                    <input type="hidden" name="" id="conceded-goal-id">
+                </div>
+                <div class="situation">
+                    <label for="conceded-goal-situation-edit">Stav na ledě:</label>
+                    <select id="conceded-goal-situation-edit">
+                        <option value="5/5" selected>5/5</option>
+                        <option value="4/4">4/4</option>
+                        <option value="3/3">3/3</option>
+                        <option value="5/4">5/4</option>
+                        <option value="5/3">5/3</option>
+                        <option value="4/3">4/3</option>
+                        <option value="4/5">4/5</option>
+                        <option value="3/5">3/5</option>
+                        <option value="3/4">3/4</option>
+                        <option value="TS">TS</option>
+                        <option value="SN">SN</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <label>Na ledě:</label>
+                <input type="number"   inputmode="numeric"  name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="conceded-goal-onIce1-edit">
+                <input type="hidden" name="minus1" id="conceded-goal-onIce1-edit-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="conceded-goal-onIce2-edit">
+                <input type="hidden" name="minus2" id="conceded-goal-onIce2-edit-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="conceded-goal-onIce3-edit">
+                <input type="hidden" name="minus3" id="conceded-goal-onIce3-edit-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="conceded-goal-onIce4-edit">
+                <input type="hidden" name="minus4" id="conceded-goal-onIce4-edit-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="conceded-goal-onIce5-edit">
+                <input type="hidden" name="minus5" id="conceded-goal-onIce5-edit-id">
+                <input type="number"  inputmode="numeric" name="" onkeyup="validateInput(this)" onfocusout="validateInput(this)" id="conceded-goal-onIce6-edit">
+                <input type="hidden" name="minus6" id="conceded-goal-onIce6-edit-id">
+            </div>
+            <div id="conceded-goal-roster-edit" class="roster">
+                <button data-number="1" data-id="1">00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="editConcededGoal()">Uložit</button>
+            <button class="cancel" onclick="closeModal(null,'conceded-goal-edit')">Zrušit</button>
+            <button class="delete" onclick="openDeleteConcededGoalDialog()">Smazat gól</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="penalty-edit" id="penalty-edit">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Upravit vyloučení</h4>
+            <button onclick="closeModal(null,'penalty-edit')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div> <label for="penalty-time-real-edit">Čas:</label>
+                    <input type="text" name="" id="penalty-time-real-edit" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)"   inputmode="numeric" maxlength="4"></div><div class="situation">
+                <input type="hidden" name="" id="penalty-id">
+                <label>Hráč:</label>
+                <input type="number"  inputmode="numeric" onkeyup="validateInput(this)" onfocusout="validateInput(this)"  name="" id="penalty-player-edit">
+                <input type="hidden" name="penalty-player" id="penalty-player-edit-id"></div></div>
+            <div class="time-reason">
+                <div>
+                    <label for="penalty-length-edit">Délka trestu:</label>
+                    <select id="penalty-length-edit">
+                        <option value="2">2</option>
+                        <option value="4">2+2</option>
+                        <option value="12">2+10</option>
+                        <option value="10">10</option>
+                        <option value="5">5</option>
+                        <option value="25">5+OK</option>
+                        <option value="20">OK</option>
+                        <option value="0">TS</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="reason-edit">Důvod: </label>
+                    <input type="search" id="reason-edit" autocomplete="on" list="penalties">
+                </div>
+            </div>
+            <div id="penalty-roster-edit" class="roster">
+                <button data-number="1" data-id="1">00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+                <button>00 <br>Příjmení</button>
+            </div>
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="editPenalty()">Uložit</button>
+            <button class="cancel" onclick="closeModal(null,'penalty-edit')">Zrušit</button>
+            <button class="delete" onclick="openDeletePenaltyDialog()">Smazat trest</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="opponent-penalty-edit" id="opponent-penalty-edit">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Upravit vyloučení soupeře</h4>
+            <button onclick="closeModal(null,'opponent-penalty-edit')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+            <div class="time-situation">
+                <div> <label for="conceded-goal-time-real-edit">Čas:</label>
+                    <input type="text" name="" id="opponent-penalty-time-real-edit" onkeyup="checkTimeKey(this)" onfocusout="checkTimeFocus(this)"   inputmode="numeric" maxlength="4"></div><div class="situation">
+                <input type="hidden" name="" id="opponent-penalty-id">
+                <label for="opponent-penalty-length-edit">Délka trestu:</label>
+                <select id="opponent-penalty-length-edit">
+                    <option value="2">2</option>
+                    <option value="4">2+2</option>
+                    <option value="12">2+10</option>
+                    <option value="10">10</option>
+                    <option value="5">5</option>
+                    <option value="25">5+OK</option>
+                    <option value="20">OK</option>
+                    <option value="0">TS</option>
+                </select></div></div>
+
+        </div>
+        <div class="modal-buttons">
+            <button class="save" onclick="editOpponentPenalty()">Uložit</button>
+            <button class="cancel" onclick="closeModal(null,'opponent-penalty-edit')">Zrušit</button>
+            <button class="delete" onclick="openDeleteOpponentPenaltyDialog()">Smazat trest</button>
+        </div>
+    </div>
+</div>
+<div class="modal" th:fragment="select-active-goalie" id="select-active-goalie">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h4>Vyberte začínajícího brankáře</h4>
+            <button onclick="closeModal(null,'select-active-goalie')"><img src="/svg/x.svg" ></button>
+        </div>
+        <div class="modal-text">
+
+            <div><input type="radio" name="goalie" id="goalie1"><label for="goalie1">Brankář 1</label></div>
+            <div><input type="radio" name="goalie" id="goalie2"><label for="goalie2">Brankář 2</label></div>
+
+
+
+        </div>
+        <div class="modal-buttons">
+            <button onclick="selectGoalie()">Uložit</button><button class="cancel" onclick="closeModal(null,'select-active-goalie')">Zrušit</button>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+<div class="dialog-box" th:fragment="delete-team" id="delete-team">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete smazat tým?</h4>
+        <input type="hidden" name="delete-team-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deleteTeam()">Ano</button><button onclick="closeDialog(null, 'delete-team')" class="cancel">Ne</button></div>
+    </div>
+</div>
+<div class="dialog-box" th:fragment="delete-player" id="delete-player">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete smazat hráče?</h4>
+        <input type="hidden" name="delete-player-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deletePlayer()">Ano</button><button onclick="closeDialog(null, 'delete-player')" class="cancel">Ne</button></div>
+    </div>
+</div>
+<div class="dialog-box" th:fragment="delete-game" id="delete-game">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete smazat zápas?</h4>
+        <input type="hidden" name="delete-game-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deleteGame()">Ano</button><button onclick="closeDialog(null, 'delete-game')" class="cancel">Ne</button></div>
+    </div>
+</div>
+<div class="dialog-box" th:fragment="delete-roster" id="delete-roster">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete odebrat hráče ze soupisky?</h4>
+        <input type="hidden" name="delete-roster-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deletePlayerFromRoster()">Ano</button><button onclick="closeDialog(null, 'delete-roster')" class="cancel">Ne</button></div>
+    </div>
+</div>
+<div class="dialog-box" th:fragment="delete-goal-scored" id="delete-goal-scored">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete odebrat gól?</h4>
+        <input type="hidden" name="delete-goal-scored-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deleteGoalScored()">Ano</button><button onclick="closeDialog(null, 'delete-goal-scored');" class="cancel">Ne</button></div>
+    </div>
+</div><div class="dialog-box" th:fragment="delete-goal-conceded" id="delete-goal-conceded">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete odebrat gól?</h4>
+        <input type="hidden" name="delete-goal-conceded-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deleteGoalConceded()">Ano</button><button onclick="closeDialog(null, 'delete-goal-conceded');" class="cancel">Ne</button></div>
+    </div>
+</div><div class="dialog-box" th:fragment="delete-penalty" id="delete-penalty">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete odebrat trest?</h4>
+        <input type="hidden" name="delete-penalty-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deletePenalty()">Ano</button><button onclick="closeDialog(null, 'delete-penalty');" class="cancel">Ne</button></div>
+    </div>
+</div><div class="dialog-box" th:fragment="delete-opponent-penalty" id="delete-opponent-penalty">
+    <div class="dialog-box-content">
+        <h4>Opravdu chcete odebrat trest?</h4>
+        <input type="hidden" name="delete-opponent-penalty-id" >
+        <div class="dialog-box-buttons"><button class="agree" onclick="deleteOpponentPenalty()">Ano</button><button onclick="closeDialog(null, 'delete-opponent-penalty');" class="cancel">Ne</button></div>
+    </div>
+</div>

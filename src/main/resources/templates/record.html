@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="'Zápas '+${id}+' - záznam statistik'"></title>
+    <link rel="stylesheet" th:href="@{/css/default.css}">
+    <link rel="stylesheet" th:href="@{/css/record.css}">
+    <link rel="stylesheet" th:href="@{/css/modal.css}">
+</head>
+<body>
+<div class="menu" th:replace="~{fragments/menu.html:: menu('teams')}"></div>
+
+<div class="main">
+    <div class="header" th:replace="~{fragments/menu.html:: header(null,null)}">
+
+    </div>
+
+
+
+        <div class="header-buttons">
+            <a th:href="'/games/'+${id}" class="back-button">Zpět na soupisku</a>
+
+        </div>
+
+    <div id="content">
+        <div class="box game-header">
+            <table>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+            </table>
+        </div>
+        <div class="game-management">
+            <div class="gm-left">
+                <div><button onclick="openModal('scored-goal')">Vstřelený gól</button></div>
+                <div><button onclick="openModal('penalty')">Vyloučení</button></div>
+                <div><button onclick="changeGoalkeeper()">Změna brankáře</button></div>
+                <div><table id="saves-table">
+                    <tr>
+                        <td colspan="3" id="saves-header">
+                            Zásahy brankáře v X.tř
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" id="saves-header-name">
+                            #XX Jméno Příjmení
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="removeSave()">-</button></td>
+                        <td id="saves">XX</td>
+                        <td><button onclick="addSave()">+</button></td>
+                    </tr>
+                </table></div>
+
+                <div><button onclick="removePeriod()">Předchozí třetina</button></div>
+            </div>
+            <div class="gm-center">
+                <div class="box">
+                    <div class="gm-header">
+                        <h3>Herní události</h3>
+                        <a th:href="'/games/'+${id}+'/summary'" target="_blank">Přehled zápasu</a>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="gm-right">
+                <div><button onclick="openModal('conceded-goal')">Obdržený gól</button></div>
+                <div><button onclick="openModal('opponent-penalty')">Vyloučení soupeře</button></div>
+                <div><button onclick="showStats()">Statistiky hráčů</button></div>
+                <div><table>
+
+                    <tr>
+                        <td colspan="3" id="shots-header">
+                            Střely na branku v X. tř.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="removeShot()">-</button></td>
+                        <td id="shots">XX</td>
+                        <td><button onclick="addShot()">+</button></td>
+                    </tr>
+                </table></div>
+
+                <div>
+
+                    <button onclick="addPeriod()">Další třetina</button>
+                    <br>
+                    <button id="end-game" style="display: none">Ukončit zápas</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:replace="~{fragments/modals.html:: scored-goal}"></div>
+<div th:replace="~{fragments/modals.html:: scored-goal-edit}"></div>
+<div th:replace="~{fragments/modals.html:: conceded-goal}"></div>
+<div th:replace="~{fragments/modals.html:: conceded-goal-edit}"></div>
+<div th:replace="~{fragments/modals.html:: penalty}"></div>
+<div th:replace="~{fragments/modals.html:: opponent-penalty}"></div>
+<div th:replace="~{fragments/modals.html:: penalty-edit}"></div>
+<div th:replace="~{fragments/modals.html:: opponent-penalty-edit}"></div>
+<div th:replace="~{fragments/modals.html:: player-stats}"></div>
+<div th:replace="~{fragments/modals.html:: select-active-goalie}"></div>
+<div th:replace="~{fragments/dialogs.html:: delete-goal-scored}"></div>
+<div th:replace="~{fragments/dialogs.html:: delete-goal-conceded}"></div>
+<div th:replace="~{fragments/dialogs.html:: delete-penalty}"></div>
+<div th:replace="~{fragments/dialogs.html:: delete-opponent-penalty}"></div>
+<div th:replace="~{fragments/message.html:: message-box}"></div>
+</body>
+<datalist id="penalties">
+    <option value="bodnutí koncem hole">bodnutí koncem hole</option>
+    <option value="bodnutí špičkou hole">bodnutí špičkou hole</option>
+    <option value="brankář za střední čárou">brankář za střední čárou</option>
+    <option value="bodnutí špičkou hole">bodnutí špičkou hole</option>
+    <option value="bitka">bitka</option>
+    <option value="držení hole">držení hole</option>
+    <option value="držení">držení</option>
+    <option value="nafilmovaný pád – přihrávání">nafilmovaný pád – přihrávání</option>
+    <option value="fyzické napadání rozhodčích">fyzické napadání rozhodčích</option>
+    <option value="hákování">hákování</option>
+    <option value="hození hole / předmětu">hození hole / předmětu</option>
+    <option value="hrubost">hrubost</option>
+    <option value="faul kolenem">faul kolenem</option>
+    <option value="kopnutí">kopnutí</option>
+    <option value="kousnutí">kousnutí</option>
+    <option value="krosček">krosček</option>
+    <option value="faul loktem">faul loktem</option>
+    <option value="napadení">napadení</option>
+    <option value="naražení zezadu">naražení zezadu</option>
+    <option value="nedovolené bránění">nedovolené bránění</option>
+    <option value="nedovolené bránění brankáři">nedovolené bránění brankáři</option>
+    <option value="nesportovní chování">nesportovní chování</option>
+    <option value="nedovolená hůl nebo měření hole">nedovolená hůl nebo měření hole</option>
+    <option value="napadání rozhodčích">napadání rozhodčích</option>
+    <option value="nedovolená nebo nebezpečná výstroj">nedovolená nebo nebezpečná výstroj</option>
+    <option value="nedovolený zásah tělem (v ženském hokeji)">nedovolený zásah tělem (v ženském hokeji)</option>
+    <option value="opuštění brankoviště v průběhu šarvátky">opuštění brankoviště v průběhu šarvátky</option>
+    <option value="opuštění hráčské lavice">opuštění hráčské lavice</option>
+    <option value="opuštění trestné lavice">opuštění trestné lavice</option>
+    <option value="odmítnutí zahájit hru">odmítnutí zahájit hru</option>
+    <option value="podkopnutí">podkopnutí</option>
+    <option value="plivnutí">plivnutí</option>
+    <option value="příliš mnoho hráčů na ledě">příliš mnoho hráčů na ledě</option>
+    <option value="podrážení">podrážení</option>
+    <option value="přikrytí puku brankářem">přikrytí puku brankářem</option>
+    <option value="sekání">sekání</option>
+    <option value="sevření puku rukou">sevření puku rukou</option>
+    <option value="porušení postupu při střídání hráčů">porušení postupu při střídání hráčů</option>
+    <option value="tahání za vlasy, helmu, mřížku">tahání za vlasy, helmu, mřížku</option>
+    <option value="úder hlavou">úder hlavou</option>
+    <option value="vražení na mantinel">vražení na mantinel</option>
+    <option value="vysoká hůl">vysoká hůl</option>
+    <option value="zásah do nohou">zásah do nohou</option>
+    <option value="zdržování hry">zdržování hry</option>
+    <option value="zlomená hůl">zlomená hůl</option>
+    <option value="zásah proti divákům">zásah proti divákům</option>
+
+</datalist>
+<script src="/js/const.js"></script>
+<script src="/js/util.js"></script>
+<script src="/js/modules/modal.js"></script>
+<script src="/js/modules/message.js"></script>
+<script src="/js/record/script.js"></script>
+<script src="/js/record/validation.js"></script>
+<script src="/js/goalsScored.js"></script>
+<script src="/js/goalsConceded.js"></script>
+<script src="/js/penalty.js"></script>
+<script src="/js/opponentPenalty.js"></script>
+<script src="/js/saves.js"></script>
+<script src="/js/shots.js"></script>
+<script src="/js/record/stats.js"></script>
+<script src="/js/roster.js"></script>
+</html>

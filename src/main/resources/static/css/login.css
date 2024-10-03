@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+:root{
+    --menu:#162a73;
+    --violet: #7802e7;
+    --white: #f1f3fb;
+    --lgrey: #e2e3e4;
+    --mgrey: #909090;
+    --dgrey: #595757;
+    --black: #222222;
+    --bg: #dcdbdb;
+    --lblue: #e7edfb;
+    --twhite: #ffffff;
+    --red: #f74141;
+    --lred: rgba(247, 65, 65, 0.5);
+    --green: #6cc644;
+    --filtered-violet: brightness(0) saturate(100%) invert(15%) sepia(100%) saturate(4190%) hue-rotate(270deg) brightness(83%) contrast(126%);
+    --filtered-red:  brightness(0) saturate(100%) invert(42%) sepia(23%) saturate(6653%) hue-rotate(334deg) brightness(94%) contrast(107%);
+    --filtered-white:  brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(201deg) brightness(106%) contrast(106%);
+    --filtered-dgrey:  brightness(0) saturate(100%) invert(33%) sepia(4%) saturate(212%) hue-rotate(314deg) brightness(91%) contrast(80%);
+}
+
+html {
+    font-family: "Poppins", sans-serif;
+}
+
+body{
+    background-color: var(--violet);
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 98vh;
+}
+
+h1{
+    font-weight: 500;
+    font-size: 3.5rem;
+}
+
+.error-message{
+    color: #ff8760;
+}
+
+form, .form{
+    width: 20%;
+}
+
+label{
+    margin-top: 1rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input {
+    font-family: "Poppins", sans-serif;
+    background: none;
+    color: var(--white);
+    border: none;
+    border-bottom: 2px solid var(--white);
+    font-size: 1.25rem;
+    line-height: 2.5rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+}
+
+input:focus {
+    border-bottom: 2px solid var(--white);
+    outline: none;
+    box-shadow: 0 8px 10px -6px rgba(255, 255, 255, 0.5); /* Vytvoří rozmazaný efekt pod rámečkem */
+}
+
+
+
+button{
+    width: 100%;
+    background-color: var(--white);
+    color: var(--violet);
+    border: none;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+    line-height: 3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button:disabled{
+    cursor: not-allowed;
+    background-color: var(--mgrey);
+    color: var(--white);
+}
+
+
+
+.message-box{
+    z-index: 3;
+    position: fixed;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, 0);
+    margin-top: 2rem;
+    display: none;
+    align-items: center;
+    gap: 20px;
+    padding: 1rem 2rem;
+    border-radius: 1rem;
+    background-color: var(--white);
+    width: fit-content;
+    overflow: hidden;
+    white-space: normal;
+    word-wrap: break-word;
+    -webkit-box-shadow: 44px 4px 14px 0px rgba(0,0,0,0.20);
+    -moz-box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.20);
+    box-shadow: 4px 4px 14px 0px rgba(0,0,0,0.20);
+    transition: all 0.3s ease;
+    opacity: 0;
+}
+
+.message-box img{
+    height: 3rem;
+    filter: var(--filtered-violet);
+}
+
+.message-box h3{
+    color: var(--black);
+}
+
+a, a:visited, a:active{
+    color: var(--white);
+}
+
+
+@media only screen and (max-width: 540px) {
+    form, .form {
+        width: 70%;
+    }
+
+}

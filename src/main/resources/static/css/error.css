@@ -1,0 +1,46 @@
+body{
+    background-color: var(--violet);
+    max-height: 99vh;
+    color: var(--white);
+}
+
+div{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+img{
+    height: 15rem;
+    filter: var(--filtered-white);
+}
+
+h1{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+a{
+    text-decoration: none;
+    font-size: 1.25rem;
+    background-color: var(--white);
+    padding: 1rem 2rem;
+    border-radius: 1.5rem;
+}
+
+a:hover, a:visited:hover{
+    background-color: var(--mgrey);
+    color: var(--white);
+}
+
+a:active{
+    transform: scale(0.95);
+}
+
+a:visited{
+    color: var(--violet);
+}

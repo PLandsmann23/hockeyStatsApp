@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stránka nebyla nalezena</title>
+    <link rel="stylesheet" href="/css/default.css">
+    <link rel="stylesheet" href="/css/error.css">
+</head>
+<body>
+    <div>
+        <img src="/svg/not-found.svg">
+        <h1>Stránka nebyla nalezena</h1>
+        <a href="/">Návrat na domovskou stránku</a>
+    </div>
+</body>
+<span th:inline="text" th:remove="tag" >
+   <!-- Timestamp: [[${timestamp}]]
+        Path: [[${path}]]
+        Status: [[${status}]]
+        Error: [[${error}]]
+        Message: [[${message}]]
+     -->
+</span>
+</html>
