@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,16 +16,11 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class NewSecurityConfig {
+public class SecurityConfig {
 
     private final JwtRequestFilter jwtRequestFilter;
 
@@ -37,7 +31,7 @@ public class NewSecurityConfig {
     private final JwtUtil jwtUtil;
 
 
-    public NewSecurityConfig(JwtRequestFilter jwtRequestFilter, CustomAuthenticationFailureHandler customAuthenticationFailureHandler, CustomAuthenticationProvider customAuthenticationProvider, JwtUtil jwtUtil) {
+    public SecurityConfig(JwtRequestFilter jwtRequestFilter, CustomAuthenticationFailureHandler customAuthenticationFailureHandler, CustomAuthenticationProvider customAuthenticationProvider, JwtUtil jwtUtil) {
         this.jwtRequestFilter = jwtRequestFilter;
         this.customAuthenticationFailureHandler = customAuthenticationFailureHandler;
         this.customAuthenticationProvider = customAuthenticationProvider;
@@ -45,7 +39,7 @@ public class NewSecurityConfig {
     }
 
     @Autowired
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) {
         auth.authenticationProvider(customAuthenticationProvider);
     }
 

@@ -3,9 +3,11 @@ package cz.landspa.statsapp.service.impl;
 import cz.landspa.statsapp.exception.UniqueKeyConstraintViolationException;
 import cz.landspa.statsapp.model.Team;
 import cz.landspa.statsapp.model.User;
+import cz.landspa.statsapp.model.UserSetting;
 import cz.landspa.statsapp.model.VerificationToken;
 import cz.landspa.statsapp.repository.TeamRepository;
 import cz.landspa.statsapp.repository.UserRepository;
+import cz.landspa.statsapp.repository.UserSettingRepository;
 import cz.landspa.statsapp.repository.VerificationTokenRepository;
 import cz.landspa.statsapp.service.TeamService;
 import cz.landspa.statsapp.service.UserService;
@@ -25,15 +27,17 @@ public class UserServiceImpl implements UserService {
 
     private final TeamService teamService;
     private final VerificationTokenRepository verificationTokenRepository;
+    private final UserSettingRepository userSettingRepository;
     UserRepository userRepository;
 
     PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, TeamService teamService, PasswordEncoder passwordEncoder, VerificationTokenRepository verificationTokenRepository) {
+    public UserServiceImpl(UserRepository userRepository, TeamService teamService, PasswordEncoder passwordEncoder, VerificationTokenRepository verificationTokenRepository, UserSettingRepository userSettingRepository) {
         this.userRepository = userRepository;
         this.teamService = teamService;
         this.passwordEncoder = passwordEncoder;
         this.verificationTokenRepository = verificationTokenRepository;
+        this.userSettingRepository = userSettingRepository;
     }
 
     @Override
@@ -41,6 +45,9 @@ public class UserServiceImpl implements UserService {
         try {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             User createdUser = userRepository.save(user);
+            UserSetting setting = new UserSetting();
+            setting.setUser(createdUser);
+            userSettingRepository.save(setting);
             verificationTokenRepository.save(new VerificationToken(createdUser));
             return createdUser;
         } catch (DataIntegrityViolationException e){
@@ -71,6 +78,7 @@ public class UserServiceImpl implements UserService {
         for(Team t: userTeams){
             teamService.deleteTeam(t.getId());
         }
+        userSettingRepository.deleteById(id);
         userRepository.deleteById(id);
     }
 

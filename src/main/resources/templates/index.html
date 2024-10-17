@@ -95,5 +95,10 @@
 <script src="/js/modules/message.js"></script>
 <script src="/js/script.js"></script>
 <script src="/js/teams.js"></script>
+<script th:inline="javascript">
+    var userSettings = /*[[${settings}]]*/ null ;
+
+    sessionStorage.setItem("settings", JSON.stringify(userSettings));
+</script>
 
 </html>

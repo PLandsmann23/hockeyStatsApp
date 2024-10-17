@@ -41,6 +41,7 @@ public class Controller {
         try {
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             model.addAttribute("username", auth.getPrincipal());
+            model.addAttribute("settings", null);
 
             return "index";
         } catch (Exception e){

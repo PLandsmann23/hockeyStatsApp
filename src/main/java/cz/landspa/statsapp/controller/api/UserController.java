@@ -2,9 +2,11 @@ package cz.landspa.statsapp.controller.api;
 
 import cz.landspa.statsapp.model.DTO.user.ChangePassword;
 import cz.landspa.statsapp.model.User;
+import cz.landspa.statsapp.model.UserSetting;
 import cz.landspa.statsapp.model.VerificationToken;
 import cz.landspa.statsapp.service.EmailService;
 import cz.landspa.statsapp.service.UserService;
+import cz.landspa.statsapp.service.UserSettingService;
 import cz.landspa.statsapp.service.VerificationTokenService;
 import cz.landspa.statsapp.util.SecurityUtil;
 import cz.landspa.statsapp.util.Util;
@@ -35,13 +37,15 @@ public class UserController {
     private final PasswordEncoder passwordEncoder;
     private final VerificationTokenService verificationTokenService;
     private final EmailService emailService;
+    private final UserSettingService userSettingService;
 
-    public UserController(UserService userService, SecurityUtil securityUtil, PasswordEncoder passwordEncoder, VerificationTokenService verificationTokenService, EmailService emailService) {
+    public UserController(UserService userService, SecurityUtil securityUtil, PasswordEncoder passwordEncoder, VerificationTokenService verificationTokenService, EmailService emailService, UserSettingService userSettingService) {
         this.userService = userService;
         this.securityUtil = securityUtil;
         this.passwordEncoder = passwordEncoder;
         this.verificationTokenService = verificationTokenService;
         this.emailService = emailService;
+        this.userSettingService = userSettingService;
     }
 
     @PostMapping("/register")
@@ -91,6 +95,20 @@ public class UserController {
             }
 
             return new ResponseEntity<>(HttpStatus.OK);
+        } catch (Exception e) {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", e.getMessage());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PostMapping("/settings")
+    public ResponseEntity<?> changeSettings(@RequestBody UserSetting userSetting){
+        try{
+            User user = userService.getUserByUsername(securityUtil.getCurrentUsername());
+            userSetting.setUser(user);
+
+            return new ResponseEntity<>(userSettingService.updateSetting(user.getId(), userSetting),HttpStatus.OK);
         } catch (Exception e) {
             Map<String, String> response = new HashMap<>();
             response.put("message", e.getMessage());
