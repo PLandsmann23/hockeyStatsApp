@@ -11,10 +11,12 @@ import lombok.Setter;
 @Setter
 public class OpponentPenaltyDTO extends EventDTO {
     Integer minutes;
+    Boolean coincidental;
 
-    public OpponentPenaltyDTO(String type, Long id, GameId game, Integer time, Integer minutes) {
+    public OpponentPenaltyDTO(String type, Long id, GameId game, Integer time, Integer minutes, Boolean coincidental) {
         super(type, id, game, time);
         this.minutes = minutes;
+        this.coincidental = coincidental;
     }
 
     public static OpponentPenaltyDTO fromOpponentPenalty(OpponentPenalty opponentPenalty){
@@ -23,7 +25,8 @@ public class OpponentPenaltyDTO extends EventDTO {
                 opponentPenalty.getId(),
                 GameId.fromGame(opponentPenalty.getGame()),
                 opponentPenalty.getTime(),
-                opponentPenalty.getMinutes()
+                opponentPenalty.getMinutes(),
+                opponentPenalty.getCoincidental()
         );
     }
 }

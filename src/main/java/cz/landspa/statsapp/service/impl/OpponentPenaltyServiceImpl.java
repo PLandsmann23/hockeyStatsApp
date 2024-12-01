@@ -33,6 +33,9 @@ public class OpponentPenaltyServiceImpl implements OpponentPenaltyService {
             if(penalty.getMinutes()!=null){
                 oldPenalty.setMinutes(penalty.getMinutes());
             }
+            if(penalty.getCoincidental()!=null){
+                oldPenalty.setCoincidental(penalty.getCoincidental());
+            }
 
 
             return opponentPenaltyRepository.save(oldPenalty);

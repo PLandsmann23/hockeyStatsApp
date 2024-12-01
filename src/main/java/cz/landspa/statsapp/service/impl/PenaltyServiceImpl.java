@@ -39,6 +39,9 @@ public class PenaltyServiceImpl implements PenaltyService {
             if(penalty.getReason()!=null){
                 oldPenalty.setReason(penalty.getReason());
             }
+            if(penalty.getCoincidental()!=null){
+                oldPenalty.setCoincidental(penalty.getCoincidental());
+            }
 
             return penaltyRepository.save(oldPenalty);
         } else {

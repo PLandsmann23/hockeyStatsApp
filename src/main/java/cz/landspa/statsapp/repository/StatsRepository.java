@@ -20,12 +20,12 @@ public interface StatsRepository extends JpaRepository<Event, Long> {
     SELECT new cz.landspa.statsapp.model.DTO.stats.TeamStats(
         (SELECT COUNT(DISTINCT gs3.id) FROM GoalScored gs3 WHERE gs3.game.id IN :gameIds AND gs3.situation IN ('5/4','5/3','4/3')),
         null,
-        (SELECT COUNT(DISTINCT op.id) FROM OpponentPenalty op WHERE op.game.id IN :gameIds AND op.minutes IN (2,5,25,12)) + 
-        ((SELECT COUNT(op2.id) FROM OpponentPenalty op2 WHERE op2.game.id IN :gameIds AND op2.minutes IN (4)) * 2),
+        (SELECT COUNT(DISTINCT op.id) FROM OpponentPenalty op WHERE op.game.id IN :gameIds AND op.minutes IN (2,5,25,12) AND op.coincidental=false ) + 
+        ((SELECT COUNT(op2.id) FROM OpponentPenalty op2 WHERE op2.game.id IN :gameIds AND op2.minutes IN (4) AND op2.coincidental=false) * 2),
         (SELECT COUNT(DISTINCT gc3.id) FROM GoalConceded gc3 WHERE gc3.game.id IN :gameIds AND gc3.situation IN ('4/5','3/5','3/4')),
         null,
-        (SELECT COUNT(DISTINCT p.id) FROM Penalty p WHERE p.game.id IN :gameIds AND p.minutes IN (2,5,25,12)) + 
-        ((SELECT COUNT(p2.id) FROM Penalty p2 WHERE p2.game.id IN :gameIds AND p2.minutes IN (4)) * 2),
+        (SELECT COUNT(DISTINCT p.id) FROM Penalty p WHERE p.game.id IN :gameIds AND p.minutes IN (2,5,25,12) AND p.coincidental=false) + 
+        ((SELECT COUNT(p2.id) FROM Penalty p2 WHERE p2.game.id IN :gameIds AND p2.minutes IN (4) AND p2.coincidental=false) * 2),
         (SELECT SUM(s.shots) FROM Shot s WHERE s.game.id IN :gameIds),
         (SELECT SUM(sa.saves) FROM Saves sa WHERE sa.game.id IN :gameIds),
         (SELECT COUNT(DISTINCT g.id) FROM Game g WHERE g.id IN :gameIds),

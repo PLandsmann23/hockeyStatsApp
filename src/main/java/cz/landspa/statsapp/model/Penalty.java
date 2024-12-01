@@ -24,4 +24,6 @@ public class Penalty extends Event{
     Integer minutes;
 
     String reason;
+
+    Boolean coincidental = false;
 }

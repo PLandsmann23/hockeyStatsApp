@@ -18,25 +18,63 @@ async function loadData(){
 
 
 function parseEvents(events){
-    let tbody = document.querySelector(".game-events tbody");
+    let table = document.querySelector(".game-events table");
 
-    tbody.innerHTML = "";
+    table.innerHTML = "";
 
-    for(let event of events){
-        let row;
-        if(event.type === "GoalScored"){
-            row = scoredGoalToRow(event);
+    let periodLength = Number(localStorage.getItem("periodLength"));
+
+    for(let i = 0; i<= Number(localStorage.getItem("periods")); i++){
+        let head = document.createElement('thead');
+        let b = document.createElement('tbody');
+        let r = document.createElement('tr');
+        let h = document.createElement('th');
+        if(i<Number(localStorage.getItem("periods"))){
+            h.textContent = (i + 1) + "." + getPartName();
+        } else {
+            h.textContent = "Prodloužení";
         }
-        if(event.type === "GoalConceded"){
-            row = concededGoalToRow(event);
+
+        r.appendChild(h);
+        head.appendChild(r);
+
+        table.appendChild(head);
+        table.appendChild(b);
+    }
+
+    let bodies = document.querySelectorAll(".game-events tbody");
+
+
+    for(let p = 0; p < bodies.length; p++){
+
+
+        let periodEvents = Array();
+
+        for(let ev of events){
+            if(ev.time > p*periodLength*60 && ev.time <= (p+1)*periodLength*60 && p<Number(localStorage.getItem("periods"))){
+                periodEvents.push(ev);
+            } else if (ev.time > p*periodLength*60 && p===Number(localStorage.getItem("periods"))){
+                periodEvents.push(ev);
+            }
         }
-        if(event.type === "Penalty"){
-            row = penaltyToRow(event);
+
+        for(let event of periodEvents){
+            let row;
+            if(event.type === "GoalScored"){
+                row = scoredGoalToRow(event);
+            }
+            if(event.type === "GoalConceded"){
+                row = concededGoalToRow(event);
+            }
+            if(event.type === "Penalty"){
+                row = penaltyToRow(event);
+            }
+            if(event.type === "OpponentPenalty"){
+                row = opponentPenaltyToRow(event);
+            }
+            bodies[p].appendChild(row);
         }
-        if(event.type === "OpponentPenalty"){
-            row = opponentPenaltyToRow(event);
-        }
-        tbody.appendChild(row);
+
     }
 }
 

@@ -17,6 +17,10 @@ public class ShotPeriodSum {
     public ShotPeriodSum(Integer period, Long shots, Long saves, Long goalsConceded) {
         this.period = period;
         this.team = shots;
-        this.opponent = saves + goalsConceded;
+        if(saves !=null){
+            this.opponent = saves + goalsConceded;
+        } else {
+            this.opponent = goalsConceded;
+        }
     }
 }

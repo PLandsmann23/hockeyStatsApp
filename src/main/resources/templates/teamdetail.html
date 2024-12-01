@@ -25,7 +25,7 @@
                 <button class="tab active" onclick="switchTab('games')">Zápasy</button>
                 <button class="tab" onclick="switchTab('players')">Hráči</button>
                 <div class="box tab-content active" id="games">
-                <div class="games-header"><h2>Zápasy</h2><button onclick="openModal('create-game')">Nový zápas</button></div>
+                <div class="games-header"><h2>Zápasy</h2><button onclick="openModal('create-game'); pasteSettings()">Nový zápas</button></div>
                     <div class="games-filter" style="visibility: hidden">
                         <label for="range">Období: </label><select id="range"></select>
                         <label for="date-from">Datum od: </label><input type="date" id="date-from">

@@ -18,4 +18,6 @@ public class OpponentPenalty extends Event{
 
     Integer minutes;
 
+    Boolean coincidental;
+
 }

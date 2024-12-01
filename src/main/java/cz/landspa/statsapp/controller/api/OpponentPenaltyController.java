@@ -37,7 +37,7 @@ public class OpponentPenaltyController {
     }
 
     @PutMapping("{gameId}/opponentPenalties/{eventId}")
-    public ResponseEntity<?> addPenalty(@PathVariable Long gameId,@PathVariable Long eventId, @RequestBody OpponentPenalty penalty){
+    public ResponseEntity<?> editPenalty(@PathVariable Long gameId,@PathVariable Long eventId, @RequestBody OpponentPenalty penalty){
         try{
 
             return new ResponseEntity<>(opponentPenaltyService.updatePenalty(penalty, eventId), HttpStatus.OK);

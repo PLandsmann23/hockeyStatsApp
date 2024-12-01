@@ -3,7 +3,9 @@ package cz.landspa.statsapp.controller;
 
 import cz.landspa.statsapp.model.Game;
 import cz.landspa.statsapp.model.Team;
+import cz.landspa.statsapp.model.User;
 import cz.landspa.statsapp.service.*;
+import cz.landspa.statsapp.util.SecurityUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
@@ -27,21 +29,26 @@ public class Controller {
     private final GameStatsService gameStatsService;
     private final EventService eventService;
     private final UserService userService;
+    private final UserSettingService userSettingService;
+    private final SecurityUtil securityUtil;
 
-    public Controller(GameService gameService, TeamService teamService, GameStatsService gameStatsService, EventService eventService, UserService userService) {
+    public Controller(GameService gameService, TeamService teamService, GameStatsService gameStatsService, EventService eventService, UserService userService, UserSettingService userSettingService, SecurityUtil securityUtil) {
         this.gameService = gameService;
         this.teamService = teamService;
         this.gameStatsService = gameStatsService;
         this.eventService = eventService;
         this.userService = userService;
+        this.userSettingService = userSettingService;
+        this.securityUtil = securityUtil;
     }
 
     @GetMapping("")
     public String index(Model model){
         try {
+            User user = userService.getUserByUsername(securityUtil.getCurrentUsername());
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             model.addAttribute("username", auth.getPrincipal());
-            model.addAttribute("settings", null);
+            model.addAttribute("settings", userSettingService.getSettingByUserId(user.getId()));
 
             return "index";
         } catch (Exception e){

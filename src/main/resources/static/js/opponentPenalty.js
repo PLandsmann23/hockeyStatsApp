@@ -1,10 +1,11 @@
 async function newOpponentPenalty(){
     let time = timeToSeconds(document.querySelector("#opponent-penalty-time-real").value);
     let minutes = document.querySelector("#opponent-penalty-length").value;
+    let coincidental = document.querySelector("#opponent-coincidental").checked;
 
 
 
-    let body = {time:time ,game: {id: gameId}, minutes: minutes};
+    let body = {time:time ,game: {id: gameId}, minutes: minutes, coincidental: coincidental};
 
     try {
         const response = await fetch(API_URL + "games/"+gameId+"/opponentPenalties", {headers: {"Content-Type": "application/json"
@@ -31,10 +32,11 @@ async function editOpponentPenalty(){
     let eventId = document.querySelector("#opponent-penalty-id").value;
     let time = timeToSeconds(document.querySelector("#opponent-penalty-time-real-edit").value);
     let minutes = document.querySelector("#opponent-penalty-length-edit").value;
+    let coincidental = document.querySelector("#opponent-coincidental-edit").checked;
 
 
 
-    let body = {time:time ,game: {id: gameId}, minutes: minutes};
+    let body = {time:time ,game: {id: gameId}, minutes: minutes, coincidental: coincidental};
 
     try {
         const response = await fetch(API_URL + "games/"+gameId+"/opponentPenalties/"+eventId, {headers: {"Content-Type": "application/json"

@@ -1,11 +1,16 @@
 package cz.landspa.statsapp.model.DTO.gameStats;
 
-import cz.landspa.statsapp.model.Player;
+
+import cz.landspa.statsapp.model.DTO.saves.PeriodSaves;
 import cz.landspa.statsapp.model.Roster;
+import cz.landspa.statsapp.model.Saves;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -14,6 +19,7 @@ import lombok.Setter;
 public class GoalieStat {
     private Roster player;
     private Long saves;
+    private List<PeriodSaves> periodSaves = new ArrayList<>();
     private Long saves1st;
     private Long saves2nd;
     private Long saves3rd;

@@ -1,15 +1,19 @@
-.change-password form>div{
+.box {
+    margin:  1rem 0 ;
+}
+
+.settings-form form>div{
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: 1rem 0;
 }
 
-.change-password form>div:last-child {
+.settings-form form>div:last-child {
     display: flex;
     justify-content: center;
 }
 
-.change-password input{
+.settings-form input{
     padding: 0.5rem;
     height: 1.5rem;
     font-size: 1.1rem;
@@ -19,7 +23,7 @@
 }
 
 
-.change-password button{
+.settings-form button{
     font-size: 1.15rem;
     padding: 0.5rem 2rem ;
     border-radius: 0.5rem;
@@ -27,13 +31,13 @@
 
 @media only screen and (max-width: 480px) {
 
-    .change-password form>div{
+    .settings-form form>div{
         display: grid;
         grid-template-columns: 30% 70%;
         margin: 1rem 0;
     }
 
-    .change-password input{
+    .settings-form input{
         width: 85%;
     }
 

@@ -20,6 +20,55 @@ function parseStatsToTable(data){
     let players = data.players;
     let gkbody = document.querySelector("#goalie-stats-body");
     let playerbody = document.querySelector("#player-stats-body");
+    let gkhead = document.querySelector('#goalie-stats-head');
+    let periods = Number(localStorage.getItem("periods"));
+
+    gkhead.innerHTML = "";
+
+    let hrow1 = document.createElement('tr');
+    let hrow2 = document.createElement('tr');
+
+    hrow1.innerHTML = `<tr>
+                <th></th>
+                <th></th>
+                <th colspan="${periods+1}">Zásahy</th>
+                <th></th>
+                <th></th>
+            </tr>`;
+
+    let num = document.createElement('th');
+    num.textContent = "Číslo";
+    hrow2.appendChild(num);
+
+    let name = document.createElement('th');
+    name.textContent = "Jméno";
+    hrow2.appendChild(name);
+
+
+
+    for(let i = 1; i<=periods; i++){
+        let per = document.createElement('th');
+        per.textContent = i;
+        hrow2.appendChild(per);
+    }
+
+
+    let ot = document.createElement('th');
+    ot.textContent = "PR";
+    hrow2.appendChild(ot);
+    let total = document.createElement('th');
+    total.textContent = "Celkem";
+    hrow2.appendChild(total);
+    let ga = document.createElement('th');
+    ga.textContent = "OG";
+    hrow2.appendChild(ga);
+    let perc = document.createElement('th');
+    perc.textContent = "%";
+    hrow2.appendChild(perc);
+
+
+    gkhead.appendChild(hrow1);
+    gkhead.appendChild(hrow2);
 
     gkbody.innerHTML = "";
     playerbody.innerHTML = "";
@@ -35,21 +84,15 @@ function parseStatsToTable(data){
         nameCell.textContent = gk.player.player.name+" "+gk.player.player.surname;
         row.appendChild(nameCell);
 
-        let saves1 = document.createElement('td');
-        saves1.textContent = gk.saves1st;
-        row.appendChild(saves1);
+        for(let j = 0; j<=periods+1; j++){
+            let periodSaves = document.createElement('td');
+            let saves = gk.periodSaves.find((saves)=>saves.period === j+1);
+            if(saves!=null){
+                periodSaves.textContent = saves.saves;
+            }
+                row.appendChild(periodSaves);
+        }
 
-        let saves2 = document.createElement('td');
-        saves2.textContent = gk.saves2nd;
-        row.appendChild(saves2);
-
-        let saves3 = document.createElement('td');
-        saves3.textContent = gk.saves3rd;
-        row.appendChild(saves3);
-
-        let savesOT = document.createElement('td');
-        savesOT.textContent = gk.savesOT;
-        row.appendChild(savesOT);
 
         let saves = document.createElement('td');
         saves.textContent = gk.saves;

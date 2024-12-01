@@ -12,11 +12,11 @@ async function loadData(){
    await fetch(API_URL +"games/"+gameId)
         .then(response => response.json())
         .then(async (data) => {
+            localStorage.setItem("periods", data.game.periods);
+            localStorage.setItem("periodLength", data.game.periodLength);
             parseGameData(data);
             parseEvents(data.events);
             shotsToInput(data.shots);
-            localStorage.setItem("periods", data.game.periods);
-            localStorage.setItem("periodLength", data.game.periodLength);
             let activeGoalie = checkForActiveGoalie(JSON.parse(localStorage.getItem("roster")));
             if (activeGoalie) {
 
@@ -77,7 +77,7 @@ function parseGameData(data){
     row.appendChild(scoreCell);
 
     let periodCell = document.createElement("td");
-    periodCell.textContent = `${game.currentPeriod<=3?game.currentPeriod+'. třetina':'Prodloužení'}`;
+    periodCell.textContent = `${game.currentPeriod<=localStorage.getItem("periods")?game.currentPeriod+'. '+getPartName():'Prodloužení'}`;
     row.appendChild(periodCell)
 
     table.appendChild(row);
@@ -85,26 +85,66 @@ function parseGameData(data){
 
 
 function parseEvents(events){
-    let tbody = document.querySelector(".gm-center tbody");
 
-    tbody.innerHTML = "";
+    let table = document.querySelector(".gm-center table");
 
-    for(let event of events){
-        let row;
-        if(event.type === "GoalScored"){
-            row = scoredGoalToRow(event);
+    table.innerHTML = "";
+
+    let periodLength = Number(localStorage.getItem("periodLength"));
+
+    for(let i = 0; i<= Number(localStorage.getItem("periods")); i++){
+        let head = document.createElement('thead');
+        let b = document.createElement('tbody');
+        let r = document.createElement('tr');
+        let h = document.createElement('th');
+        if(i<Number(localStorage.getItem("periods"))){
+            h.textContent = (i + 1) + "." + getPartName();
+        } else {
+            h.textContent = "Prodloužení";
         }
-        if(event.type === "GoalConceded"){
-            row = concededGoalToRow(event);
-        }
-        if(event.type === "Penalty"){
-            row = penaltyToRow(event);
-        }
-        if(event.type === "OpponentPenalty"){
-            row = opponentPenaltyToRow(event);
-        }
-        tbody.appendChild(row);
+
+        r.appendChild(h);
+        head.appendChild(r);
+
+        table.appendChild(head);
+        table.appendChild(b);
     }
+
+    let bodies = document.querySelectorAll(".gm-center tbody");
+
+
+    for(let p = 0; p < bodies.length; p++){
+
+
+        let periodEvents = Array();
+
+        for(let ev of events){
+            if(ev.time > p*periodLength*60 && ev.time <= (p+1)*periodLength*60 && p<Number(localStorage.getItem("periods"))){
+                periodEvents.push(ev);
+            } else if (ev.time > p*periodLength*60 && p===Number(localStorage.getItem("periods"))){
+                periodEvents.push(ev);
+            }
+        }
+
+        for(let event of periodEvents){
+            let row;
+            if(event.type === "GoalScored"){
+                row = scoredGoalToRow(event);
+            }
+            if(event.type === "GoalConceded"){
+                row = concededGoalToRow(event);
+            }
+            if(event.type === "Penalty"){
+                row = penaltyToRow(event);
+            }
+            if(event.type === "OpponentPenalty"){
+                row = opponentPenaltyToRow(event);
+            }
+            bodies[p].appendChild(row);
+        }
+
+    }
+
 }
 
 async function changeGoalkeeper(){
@@ -513,11 +553,13 @@ function penaltyToEdit(penalty){
     document.querySelector("#penalty-player-edit-id").value = penalty.player?.id ? penalty.player.id :"";
     document.querySelector("#penalty-player-edit").value = penalty.player?.gameNumber ? penalty.player.gameNumber :"";
     document.querySelector("#reason-edit").value = penalty.reason? penalty.reason : "";
+    document.querySelector("#coincidental-edit").checked = penalty.coincidental;
 }
 
 function opponentPenaltyToEdit(penalty){
     document.querySelector("#opponent-penalty-id").value = penalty.id;
     document.querySelector("#opponent-penalty-time-real-edit").value = secondsToInput(penalty.time);
+    document.querySelector("#opponent-coincidental-edit").checked = penalty.coincidental;
     let select = document.querySelector("#opponent-penalty-length-edit");
     for(let op of select.children){
         if(penalty.minutes == op.value){
@@ -551,10 +593,13 @@ function openDeleteOpponentPenaltyDialog(){
 }
 
 function savesToInput(saves){
+
+    let periods = Number(localStorage.getItem("periods"));
+
     if(saves) {
         document.querySelector("#saves-table").style.visibility = "inherit";
         document.querySelector("#saves").innerText = saves.saves;
-        document.querySelector("#saves-header").innerHTML = `Zásahy brankáře - ${saves.period<4?saves.period+'. tř':'PR'}`;
+        document.querySelector("#saves-header").innerHTML = `Zásahy brankáře - ${saves.period<=periods?saves.period+'. '+getShortPartName():'PR'}`;
         document.querySelector("#saves-header-name").innerHTML = `#${saves.goalkeeper.gameNumber} ${saves.goalkeeper.player.name} ${saves.goalkeeper.player.surname}`;
     } else {
         document.querySelector("#saves-table").style.visibility = "hidden";
@@ -564,6 +609,9 @@ function savesToInput(saves){
 
 function shotsToInput(shotsArray){
     let period = localStorage.getItem("currentPeriod");
+    let periods = Number(localStorage.getItem("periods"));
+
+
     let shots;
     for (let record of shotsArray){
         if(record.period == period){
@@ -572,13 +620,15 @@ function shotsToInput(shotsArray){
         }
     }
         document.querySelector("#shots").innerText = shots.shots;
-        document.querySelector("#shots-header").innerHTML = `Střely na branku - ${shots.period<4?shots.period+'. tř':'PR'}`;
+        document.querySelector("#shots-header").innerHTML = `Střely na branku - ${shots.period<=periods?shots.period+'. '+getShortPartName():'PR'}`;
 }
 
 function shotRecordToInput(shots){
+    let periods = Number(localStorage.getItem("periods"));
+
 
     document.querySelector("#shots").innerText = shots.shots;
-    document.querySelector("#shots-header").innerHTML = `Střely na branku - ${shots.period<4?shots.period+'. tř':'PR'}`;
+    document.querySelector("#shots-header").innerHTML = `Střely na branku - ${shots.period<=periods?shots.period+'. '+getShortPartName():'PR'}`;
 }
 
 async function addPeriod(){

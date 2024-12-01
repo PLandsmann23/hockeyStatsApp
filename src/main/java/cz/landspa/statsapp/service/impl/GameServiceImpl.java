@@ -121,7 +121,7 @@ public class GameServiceImpl implements GameService {
         Game game = gameRepository.findById(id).orElse(null);
 
         assert game != null;
-        if(game.getCurrentPeriod()<=4){
+        if(game.getCurrentPeriod()<=game.getPeriods()){
         game.setCurrentPeriod(game.getCurrentPeriod()+1);
 
         gameRepository.save(game);}

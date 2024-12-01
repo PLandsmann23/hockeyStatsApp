@@ -15,6 +15,15 @@ async function loadData (){
         });
 }
 
+function pasteSettings(){
+    let settings = JSON.parse(sessionStorage.getItem("settings"));
+    let length = document.querySelector("#game-period-length");
+    let periods = document.querySelector("#game-periods");
+
+    length.value = settings.defaultPeriodLength;
+    periods.value = settings.defaultPeriods;
+}
+
 function parseGames(data){
     const tableBody = document.querySelector('#games tbody');
 

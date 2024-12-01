@@ -15,12 +15,14 @@ public class PenaltyDTO extends EventDTO {
     RosterDTO player;
     Integer minutes;
     String reason;
+    Boolean coincidental;
 
-    public PenaltyDTO(String type, Long id, GameId game, Integer time, RosterDTO player, Integer minutes, String reason) {
+    public PenaltyDTO(String type, Long id, GameId game, Integer time, RosterDTO player, Integer minutes, String reason, Boolean coincidental) {
         super(type, id, game, time);
         this.player = player;
         this.minutes = minutes;
         this.reason = reason;
+        this.coincidental = coincidental;
     }
 
     public static PenaltyDTO fromPenalty(Penalty penalty){
@@ -31,7 +33,8 @@ public class PenaltyDTO extends EventDTO {
                 penalty.getTime(),
                 RosterDTO.fromRoster(penalty.getPlayer()),
                 penalty.getMinutes(),
-                penalty.getReason()
+                penalty.getReason(),
+                penalty.getCoincidental()
         );
     }
 }

@@ -173,6 +173,12 @@
                     <input type="search" id="reason" autocomplete="on" list="penalties">
                 </div>
             </div>
+            <div class="coincidental">
+                <div>
+                    <label for="coincidental">Souběžný trest: </label>
+                    <input type="checkbox" id="coincidental">
+                </div>
+            </div>
             <div id="penalty-roster" class="roster">
                 <button data-number="1" data-id="1">00 <br>Příjmení</button>
                 <button>00 <br>Příjmení</button>
@@ -223,7 +229,12 @@
                     <option value="20">OK</option>
                     <option value="0">TS</option>
                 </select></div></div>
-
+            <div class="coincidental">
+                <div>
+                    <label for="opponent-coincidental">Souběžný trest: </label>
+                    <input type="checkbox" id="opponent-coincidental">
+                </div>
+            </div>
         </div>
         <div class="modal-buttons">
             <button class="save" onclick="newOpponentPenalty()" disabled>Uložit</button><button class="cancel" onclick="closeModal(null,'opponent-penalty')">Zrušit</button>
@@ -237,7 +248,7 @@
             <button onclick="closeModal(null,'player-stats')"><img src="/svg/x.svg" ></button>
         </div>
         <table>
-            <thead>
+            <thead id="goalie-stats-head">
             <tr>
                 <th></th>
                 <th></th>
@@ -833,6 +844,12 @@
                     <input type="search" id="reason-edit" autocomplete="on" list="penalties">
                 </div>
             </div>
+            <div class="coincidental">
+                <div>
+                    <label for="coincidental-edit">Souběžný trest: </label>
+                    <input type="checkbox" id="coincidental-edit">
+                </div>
+            </div>
             <div id="penalty-roster-edit" class="roster">
                 <button data-number="1" data-id="1">00 <br>Příjmení</button>
                 <button>00 <br>Příjmení</button>
@@ -885,7 +902,12 @@
                     <option value="20">OK</option>
                     <option value="0">TS</option>
                 </select></div></div>
-
+            <div class="coincidental">
+                <div>
+                    <label for="opponent-coincidental-edit">Souběžný trest: </label>
+                    <input type="checkbox" id="opponent-coincidental-edit">
+                </div>
+            </div>
         </div>
         <div class="modal-buttons">
             <button class="save" onclick="editOpponentPenalty()">Uložit</button>

@@ -15,7 +15,7 @@
 
     </div>
     <div id="content">
-        <div class="box change-password">
+        <div class="box settings-form">
             <h2>Změna hesla</h2>
             <form onsubmit="changePassword(this)">
                 <div>
@@ -32,6 +32,22 @@
                 </div>
                 <div>
                         <button type="submit" id="change-pass-button" disabled>Změnit heslo</button>
+                </div>
+            </form>
+        </div>
+        <div class="box settings-form">
+            <h2>Výchozí nastavení</h2>
+            <form onsubmit="changeSettings(this)">
+                <div>
+                    <div><label for="defaultPeriodLength">Délka herní části:</label></div>
+                    <div><input type="number" name="defaultPeriodLength" id="defaultPeriodLength" onfocusout="validateSettings()" onkeyup="validateSettings()"><span class="error-message" id="e-defaultPeriodLength"></span></div>
+                </div>
+                <div>
+                    <div><label for="defaultPeriods">Počet herních částí:</label></div>
+                    <div><input type="number" name="defaultPeriods" id="defaultPeriods" onfocusout="validateSettings()" onkeyup="validateSettings()"><span class="error-message" id="e-defaultPeriods"></span></div>
+                </div>
+                <div>
+                    <button type="submit" id="change-settings-button" disabled>Uložit</button>
                 </div>
             </form>
         </div>

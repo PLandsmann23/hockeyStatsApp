@@ -1,5 +1,6 @@
 package cz.landspa.statsapp.service.impl;
 
+import cz.landspa.statsapp.model.DTO.userSetting.UserSettingDTO;
 import cz.landspa.statsapp.model.UserSetting;
 import cz.landspa.statsapp.repository.UserSettingRepository;
 import cz.landspa.statsapp.service.UserSettingService;
@@ -15,16 +16,21 @@ public class UserSettingServiceImpl implements UserSettingService {
     }
 
     @Override
-    public UserSetting updateSetting(Long id, UserSetting userSetting) {
+    public UserSettingDTO updateSetting(Long id, UserSetting userSetting) {
         if(userSettingRepository.findById(id).isPresent()) {
             UserSetting foundUserSetting = userSettingRepository.findById(id).get();
 
             foundUserSetting.setDefaultPeriods(userSetting.getDefaultPeriods());
             foundUserSetting.setDefaultPeriodLength(userSetting.getDefaultPeriodLength());
 
-            return userSettingRepository.save(foundUserSetting);
+            return UserSettingDTO.fromUserSetting(userSettingRepository.save(foundUserSetting));
         } else {
             return null;
         }
+    }
+
+    @Override
+    public UserSettingDTO getSettingByUserId(Long id) {
+        return UserSettingDTO.fromUserSetting(userSettingRepository.findById(id).orElse(null));
     }
 }

@@ -3,10 +3,11 @@ async function newPenalty(){
     let minutes = document.querySelector("#penalty-length").value;
     let player = document.querySelector("#penalty-player-id").value;
     let reason = document.querySelector("#reason").value;
+    let coincidental = document.querySelector("#coincidental").checked;
 
     let playerObject = player!==""?{id:player}:null;
 
-    let body = {time:time ,game: {id: gameId}, player: playerObject, minutes: minutes, reason:reason};
+    let body = {time:time ,game: {id: gameId}, player: playerObject, minutes: minutes, reason:reason, coincidental:coincidental};
 
     try {
         const response = await fetch(API_URL + "games/"+gameId+"/penalties", {headers: {"Content-Type": "application/json"},method: "POST", body: JSON.stringify(body)})
@@ -34,10 +35,12 @@ async function editPenalty(){
     let minutes = document.querySelector("#penalty-length-edit").value;
     let player = document.querySelector("#penalty-player-edit-id").value;
     let reason = document.querySelector("#reason-edit").value;
+    let coincidental = document.querySelector("#coincidental-edit").checked;
+
 
     let playerObject = player!==""?{id:player}:null;
 
-    let body = {time:time ,game: {id: gameId}, player: playerObject, minutes: minutes, reason:reason};
+    let body = {time:time ,game: {id: gameId}, player: playerObject, minutes: minutes, reason:reason, coincidental:coincidental};
 
     try {
         const response = await fetch(API_URL + "games/"+gameId+"/penalties/"+eventId, {headers: {"Content-Type": "application/json"},method: "PUT", body: JSON.stringify(body)})

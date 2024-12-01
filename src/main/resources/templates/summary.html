@@ -24,79 +24,58 @@
             <table>
                 <thead>
                     <tr class="team-header">
-                         <th colspan="5" th:text="${gameStats.game.team.name}">Tým 1</th>
+                         <th th:colspan="${gameStats.game.periods+2}" th:text="${gameStats.game.team.name}">Tým 1</th>
                         <th>&nbsp;</th>
-                         <th colspan="5" th:text="${gameStats.game.opponent}">Soupeř 1</th>
+                         <th th:colspan="${gameStats.game.periods+2}" th:text="${gameStats.game.opponent}">Soupeř 1</th>
                     </tr>
                     <tr>
-                        <th>1. tř</th>
-                        <th>2. tř</th>
-                        <th>3. tř</th>
+                        <th th:each="shots, index : ${gameStats.shots}" th:if="${index.index+1 <= gameStats.game.periods}" th:text="${index.index+1}+'.'"></th>
                         <th>PR</th>
                         <th>Celkem</th>
                         <th>&nbsp;</th>
                         <th>Celkem</th>
-                        <th>1. tř</th>
-                        <th>2. tř</th>
-                        <th>3. tř</th>
+                        <th th:each="shots, index : ${gameStats.shots}" th:if="${index.index+1 <= gameStats.game.periods}" th:text="${index.index+1}+'.'"></th>
                         <th>PR</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td th:text="${gameStats.shots[0].team!=null?gameStats.shots[0].team:''}">0</td>
-                        <td th:text="${gameStats.shots[1].team!=null?gameStats.shots[1].team:''}">0</td>
-                        <td th:text="${gameStats.shots[2].team!=null?gameStats.shots[2].team:''}">0</td>
-                        <td th:text="${gameStats.shots[3].team!=null?gameStats.shots[3].team:''}">0</td>
+                        <td th:each="shots, iter : ${gameStats.shots}" th:text="${gameStats.shots[iter.index].team!=null?gameStats.shots[iter.index].team:''}">0</td>
                         <td class="sum-col" th:text="${gameStats.totalShots}">00</td>
                         <td>Střely na branku</td>
                         <td class="sum-col"  th:text="${gameStats.totalSaves!=null?gameStats.totalSaves+gameStats.goalsConceded:0}">00</td>
-                        <td th:text="${gameStats.shots[0].opponent!=null?gameStats.shots[0].opponent:''}">0</td>
-                        <td th:text="${gameStats.shots[1].opponent!=null?gameStats.shots[1].opponent:''}">0</td>
-                        <td th:text="${gameStats.shots[2].opponent!=null?gameStats.shots[2].opponent:''}">0</td>
-                        <td th:text="${gameStats.shots[3].opponent!=null?gameStats.shots[3].opponent:''}">0</td>
+                        <td th:each="shots, iter : ${gameStats.shots}" th:text="${gameStats.shots[iter.index].opponent!=null?gameStats.shots[iter.index].opponent:''}">0</td>
                     </tr><tr>
-                        <td th:text="${gameStats.saves[0].team!=null?gameStats.saves[0].team:''}">0</td>
-                        <td th:text="${gameStats.saves[1].team!=null?gameStats.saves[1].team:''}">0</td>
-                        <td th:text="${gameStats.saves[2].team!=null?gameStats.saves[2].team:''}">0</td>
-                        <td th:text="${gameStats.saves[3].team!=null?gameStats.saves[3].team:''}">0</td>
+                        <td th:each="saves, iter : ${gameStats.saves}" th:text="${gameStats.saves[iter.index].team!=null?gameStats.saves[iter.index].team:''}">0</td>
                         <td class="sum-col" th:text="${gameStats.totalSaves!=null?gameStats.totalSaves:0}">00</td>
                         <td>Záashy brankářů</td>
                         <td class="sum-col"  th:text="${gameStats.totalShots - gameStats.goalsScored}">00</td>
-                        <td th:text="${gameStats.saves[0].opponent!=null?gameStats.saves[0].opponent:''}">0</td>
-                        <td th:text="${gameStats.saves[1].opponent!=null?gameStats.saves[1].opponent:''}">0</td>
-                        <td th:text="${gameStats.saves[2].opponent!=null?gameStats.saves[2].opponent:''}">0</td>
-                        <td th:text="${gameStats.saves[3].opponent!=null?gameStats.saves[3].opponent:''}">0</td>
+                        <td th:each="saves, iter : ${gameStats.saves}" th:text="${gameStats.saves[iter.index].opponent!=null?gameStats.saves[iter.index].opponent:''}">0</td>
+
                     </tr><tr>
-                        <td th:text="${gameStats.penalties[0].teamPenalty!=null?gameStats.penalties[0].teamPenalty:''}">0</td>
-                        <td th:text="${gameStats.penalties[1].teamPenalty!=null?gameStats.penalties[1].teamPenalty:''}">0</td>
-                        <td th:text="${gameStats.penalties[2].teamPenalty!=null?gameStats.penalties[2].teamPenalty:''}">0</td>
-                        <td th:text="${gameStats.penalties[3].teamPenalty!=null?gameStats.penalties[3].teamPenalty:''}">0</td>
+                        <td th:each="penalties, iter : ${gameStats.penalties}" th:text="${gameStats.penalties[iter.index].teamPenalty!=null?gameStats.penalties[iter.index].teamPenalty:''}">0</td>
                         <td class="sum-col" th:text="${gameStats.totalPenaltyMinutes!=null?gameStats.totalPenaltyMinutes:0}">00</td>
                         <td>Trestné minuty</td>
                         <td class="sum-col" th:text="${gameStats.totalOpponentPenaltyMinutes!=null?gameStats.totalOpponentPenaltyMinutes:0}">00</td>
-                        <td th:text="${gameStats.penalties[0].opponentPenalty!=null?gameStats.penalties[0].opponentPenalty:''}">0</td>
-                        <td th:text="${gameStats.penalties[1].opponentPenalty!=null?gameStats.penalties[1].opponentPenalty:''}">0</td>
-                        <td th:text="${gameStats.penalties[2].opponentPenalty!=null?gameStats.penalties[2].opponentPenalty:''}">0</td>
-                        <td th:text="${gameStats.penalties[3].opponentPenalty!=null?gameStats.penalties[3].opponentPenalty:''}">0</td>
+                        <td th:each="penalties, iter : ${gameStats.penalties}" th:text="${gameStats.penalties[iter.index].opponentPenalty!=null?gameStats.penalties[iter.index].opponentPenalty:''}">0</td>
                     </tr><tr>
-                        <td class="bg-none" colspan="4">&nbsp;</td>
+                        <td class="bg-none" th:colspan="${gameStats.game.periods+1}">&nbsp;</td>
                         <td class="sum-col" th:text="${gameStats.myShotsEfficiency!=null?(#numbers.formatDecimal(gameStats.myShotsEfficiency, 1, 2))+ ' %':'--' }">00</td>
                         <td>Úspěšnost střelby</td>
                         <td class="sum-col" th:text="${gameStats.opponentShotsEfficiency!=null?(#numbers.formatDecimal(gameStats.opponentShotsEfficiency, 1, 2))+ ' %':'--' }">00</td>
-                        <td class="bg-none"  colspan="4">&nbsp;</td>
+                        <td class="bg-none"  th:colspan="${gameStats.game.periods+1}">&nbsp;</td>
                     </tr><tr>
-                        <td class="bg-none"  colspan="4">&nbsp;</td>
+                        <td class="bg-none"  th:colspan="${gameStats.game.periods+1}">&nbsp;</td>
                         <td class="sum-col" th:text="${gameStats.ppEfficiency!=null?(#numbers.formatDecimal(gameStats.ppEfficiency, 1, 2))+'%':'--'}">00</td>
                         <td>Úspěšnost přesilovek</td>
                         <td class="sum-col" th:text="${gameStats.shEfficiency!=null? (#numbers.formatDecimal((100 - gameStats.shEfficiency), 1, 2))+'%':'--'}">00</td>
-                        <td class="bg-none"  colspan="4">&nbsp;</td>
+                        <td class="bg-none"  th:colspan="${gameStats.game.periods+1}">&nbsp;</td>
                     </tr><tr>
-                        <td class="bg-none"  colspan="4">&nbsp;</td>
+                        <td class="bg-none"  th:colspan="${gameStats.game.periods+1}">&nbsp;</td>
                         <td class="sum-col" th:text="${gameStats.shEfficiency!=null?(#numbers.formatDecimal(gameStats.shEfficiency, 1, 2))+'%':'--'}">00</td>
                         <td>Úspěšnost oslabení</td>
                         <td class="sum-col" th:text="${gameStats.ppEfficiency!=null?(#numbers.formatDecimal((100 - gameStats.ppEfficiency), 1, 2))+'%':'--'}">00</td>
-                        <td class="bg-none"  colspan="4">&nbsp;</td>
+                        <td class="bg-none"  th:colspan="${gameStats.game.periods+1}">&nbsp;</td>
                     </tr>
                 </tbody>
             </table>
@@ -129,9 +108,7 @@
                 <tr>
                     <th>Číslo</th>
                     <th>Jméno</th>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
+                    <th th:each="shots, index : ${gameStats.shots}" th:if="${index.index+1 <= gameStats.game.periods}" th:text="${index.index+1}"></th>
                     <th>PR</th>
                     <th>Celkem</th>
                     <th>OG</th>
@@ -142,10 +119,7 @@
                 <tr th:each="goalie:${goalieStats}">
                     <td th:text="${goalie.player.gameNumber}">00</td>
                     <td th:text="${goalie.player.player.name}+' '+${goalie.player.player.surname}">Jméno Příjmení</td>
-                    <td th:text="${goalie.saves1st}">0</td>
-                    <td th:text="${goalie.saves2nd}">0</td>
-                    <td th:text="${goalie.saves3rd}">0</td>
-                    <td th:text="${goalie.savesOT}">0</td>
+                    <td th:each="saves: ${goalie.periodSaves}" th:text="${saves.saves!=null ? saves.saves : 0}"></td>
                     <td th:text="${goalie.saves}">00</td>
                     <td th:text="${goalie.goals}">0</td>
                     <td th:text="${goalie.saves!=null&&goalie.goals!=null?#numbers.formatDecimal(goalie.percentage, 1, 2):'--'}">0</td>

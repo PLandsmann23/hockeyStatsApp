@@ -33,26 +33,20 @@ public interface GameRepository extends JpaRepository<Game, Long> {
     @Query("""
     SELECT new cz.landspa.statsapp.model.DTO.gameStats.ShotPeriodSum(
         :period,
-        sh.shots,
-        (SELECT sa.saves FROM Saves sa WHERE sa.game.id = :gameId AND sa.period = :period),
+        (SELECT sh.shots FROM Shot sh WHERE sh.game.id = :gameId AND sh.period = :period),
+        (SELECT SUM(sa.saves) FROM Saves sa WHERE sa.game.id = :gameId AND sa.period = :period),
         (SELECT COUNT(gc.id) FROM GoalConceded gc WHERE gc.game.id = :gameId AND gc.time >= :periodStart AND gc.time <= :periodEnd)
     )
-    FROM Shot sh
-    WHERE sh.game.id = :gameId
-    AND sh.period = :period
 """)
     ShotPeriodSum getPeriodShotSum(@Param("gameId") Long gameId, @Param("periodStart") Integer periodStart, @Param("periodEnd") Integer periodEnd, @Param("period") Integer period);
 
     @Query("""
     SELECT new cz.landspa.statsapp.model.DTO.gameStats.SavePeriodSum(
         :period,
-        sa.saves,
+        (SELECT SUM(sa.saves) FROM Saves sa WHERE sa.game.id = :gameId AND sa.period = :period),
         (SELECT sh.shots FROM Shot sh WHERE sh.game.id = :gameId AND sh.period = :period),
         (SELECT COUNT(DISTINCT gs.id) FROM GoalScored gs WHERE gs.game.id = :gameId AND gs.time >= :periodStart AND gs.time <= :periodEnd)
     )
-    FROM Saves sa
-    WHERE sa.game.id = :gameId
-    AND sa.period = :period
 """)
     SavePeriodSum getPeriodSaveSum(@Param("gameId") Long gameId, @Param("periodStart") Integer periodStart, @Param("periodEnd") Integer periodEnd, @Param("period") Integer period);
 

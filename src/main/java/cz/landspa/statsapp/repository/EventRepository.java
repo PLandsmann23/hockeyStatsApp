@@ -56,6 +56,7 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     WHERE r.game.id = :gameId
         AND r.player.position = "GK"
     GROUP BY r
+    ORDER BY r.id
 """)
     List<GoalieStat> findGoalieStatsByGameId(@Param("gameId") Long gameId);
 
@@ -69,10 +70,10 @@ public interface EventRepository extends JpaRepository<Event, Long> {
         (SELECT SUM(sa.saves) FROM Saves sa WHERE sa.game.id = g.id),
         (SELECT SUM(p.minutes) FROM Penalty p WHERE p.game.id = g.id),
         (SELECT SUM(op.minutes) FROM OpponentPenalty op WHERE op.game.id = g.id),
-        (SELECT COUNT (p.id) FROM Penalty p WHERE p.game.id = g.id AND p.minutes IN (2,5,25,12)) + 
-        ((SELECT COUNT (p2.id) FROM Penalty p2 WHERE p2.game.id = g.id AND p2.minutes IN (4)) * 2),   
-        (SELECT COUNT (op.id) FROM OpponentPenalty op WHERE op.game.id = g.id AND op.minutes IN (2,5,25,12)) + 
-        (SELECT COUNT (op.id) FROM OpponentPenalty op WHERE op.game.id = g.id AND op.minutes IN (4)) * 2,   
+        (SELECT COUNT (p.id) FROM Penalty p WHERE p.game.id = g.id AND p.minutes IN (2,5,25,12) AND p.coincidental=false) + 
+        ((SELECT COUNT (p2.id) FROM Penalty p2 WHERE p2.game.id = g.id AND p2.minutes IN (4) AND p2.coincidental=false) * 2),   
+        (SELECT COUNT (op.id) FROM OpponentPenalty op WHERE op.game.id = g.id AND op.minutes IN (2,5,25,12) AND op.coincidental=false) + 
+        (SELECT COUNT (op.id) FROM OpponentPenalty op WHERE op.game.id = g.id AND op.minutes IN (4) AND op.coincidental=false) * 2,   
         (SELECT COUNT(gs3.id) FROM GoalScored gs3 WHERE gs3.game.id = :gameId AND gs3.situation IN ("5/4","5/3","4/3")),
         (SELECT COUNT(gc3.id) FROM GoalConceded gc3 WHERE gc3.game.id = :gameId AND gc3.situation IN ("4/5","3/5","3/4")),
         (SELECT COUNT(gs3.id) FROM GoalScored gs3 WHERE EXISTS (
